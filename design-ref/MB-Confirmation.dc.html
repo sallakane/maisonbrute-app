@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="padding:88px 56px 40px;text-align:center;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#7E8C82;margin-bottom:24px">Paiement confirmé · Commande N° MB-4042-77</div>
+    <h1 style="margin:0 auto 20px;max-width:900px;font-family:'Archivo',sans-serif;font-weight:800;font-size:60px;line-height:.98;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Nous vous remercions de votre acquisition.</h1>
+    <p style="margin:0 auto;max-width:600px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Votre paiement de <strong>7 150 €</strong> a bien été reçu. C'est, pour l'heure, la partie la plus certaine de votre commande. Un e-mail de confirmation vous a été adressé.</p>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="padding:64px 56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Votre bon de convoyage</div>
+      <dc-import name="MB-Ticket" ref="MB-4042-77" statut="votre colis a quitté notre entrepôt." jours="1" hint-size="100%,200px"></dc-import>
+      <a href="MB-Suivi.dc.html" style="display:inline-block;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid #141416;color:#141416;padding-bottom:3px">Suivre ma commande →</a>
+    </div>
+    <div style="padding:64px 56px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Détail</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px">
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,20,22,.12)"><span style="color:#6E6F6A">Le Vide Contenu</span><span>2 400 €</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,20,22,.12)"><span style="color:#6E6F6A">La Lumière Rationnée</span><span>4 750 €</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,20,22,.12)"><span style="color:#6E6F6A">Livraison</span><span style="color:#7E8C82">gratuite</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;font-size:16px;font-weight:500"><span>Total réglé</span><span>7 150 €</span></div>
+      </div>
+      <div style="margin-top:20px;font-size:14px;line-height:1.6;color:#3B3C3D">Livré à : Camille Durand, 14 rue de la Patience, 75011 Paris.<br><span style="color:#6E6F6A;font-family:'IBM Plex Mono',monospace;font-size:12px">Date de livraison estimée : à déterminer.</span></div>
+    </div>
+  </section>
+
+  <section style="padding:80px 56px 96px;background:#E1E5E0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Gabarit d'e-mail de confirmation</div>
+    <div style="max-width:620px;margin:0 auto;background:#E8E8E3;border:1px solid #141416">
+      <div style="background:#141416;color:#E8E8E3;text-align:center;padding:26px;font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.045em;text-transform:uppercase">Maison Brute</div>
+      <div style="padding:40px 44px">
+        <p style="margin:0 0 20px;font-size:16px;line-height:1.65">Chère Camille,</p>
+        <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#2C2D2E">Nous vous confirmons la bonne réception de votre paiement. Votre commande <strong>N° MB-4042-77</strong> est désormais entre nos mains, et le restera aussi longtemps que nécessaire.</p>
+        <p style="margin:0 0 28px;font-size:16px;line-height:1.65;color:#2C2D2E">Vous pouvez suivre son cheminement à tout moment. Nous vous déconseillons toutefois de le faire trop souvent.</p>
+        <div style="text-align:center;margin-bottom:28px"><a href="MB-Suivi.dc.html" style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px 30px">Suivre ma commande</a></div>
+        <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6;color:#6E6F6A;text-align:center">Maison Brute · Objets d'exception, délais d'exception.<br>Vous recevez cet e-mail ; le colis, lui, viendra peut-être plus tard.</p>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }"></script>
+</body>
+</html>

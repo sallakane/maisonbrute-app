@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+  .star{cursor:pointer;transition:color .15s ease}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="padding:64px 56px 48px;border-bottom:1px solid rgba(20,20,22,.16);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:18px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Avis &amp; témoignages</div>
+      <h1 style="margin:0 0 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:60px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Ils patientent, et ils recommandent.</h1>
+      <p style="margin:0;max-width:560px;font-size:16px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Nos clients n'ont, pour la plupart, jamais reçu leur commande. Leur fidélité n'en est que plus remarquable.</p>
+    </div>
+    <div style="text-align:right;border-left:1px solid rgba(20,20,22,.16);padding-left:40px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:64px;line-height:1;color:#141416">4,9</div>
+      <div style="color:#7E8C82;letter-spacing:.2em;font-size:18px;margin:6px 0">★★★★★</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">1 204 avis · 0 réception</div>
+    </div>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 380px;gap:56px;padding:56px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="border:1px solid rgba(20,20,22,.18);padding:30px 30px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="color:#7E8C82;letter-spacing:.2em;font-size:16px">★★★★★</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Hélène D. · 4 ans d'attente</div></div>
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#2C2D2E">Commandé en 2022. Toujours pas reçu. Le service client est admirable de constance : il me répond chaque année, à la même date, le même message rassurant. Je recommande.</p>
+      </div>
+      <div style="border:1px solid rgba(20,20,22,.18);padding:30px 30px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="color:#7E8C82;letter-spacing:.2em;font-size:16px">★★★★★</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Marc-Antoine V. · attente sereine</div></div>
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#2C2D2E">Au début, on guette le facteur. Puis on comprend. L'objet n'arrivera pas, et c'est très bien ainsi : il ne pourra jamais me décevoir. Cinq étoiles.</p>
+      </div>
+      <div style="border:1px solid rgba(20,20,22,.18);padding:30px 30px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="color:#7E8C82;letter-spacing:.2em;font-size:16px">★★★★☆</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Sabine R. · 6 ans d'attente</div></div>
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#2C2D2E">Une étoile en moins car le bon de convoyage est arrivé légèrement froissé. Le colis, lui, n'est pas arrivé du tout — mais cela, je ne saurais le leur reprocher.</p>
+      </div>
+      <div style="border:1px solid rgba(20,20,22,.18);padding:30px 30px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="color:#7E8C82;letter-spacing:.2em;font-size:16px">★★★★★</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Anonyme · client depuis toujours</div></div>
+        <p style="margin:0;font-size:16px;line-height:1.65;color:#2C2D2E">Je ne me souviens plus de ce que j'ai commandé, ni quand. Mais chaque matin, l'espoir est intact. C'est un abonnement au désir. Merci Maison Brute.</p>
+      </div>
+    </div>
+
+    <aside style="border:1px solid #141416;padding:32px 30px;position:sticky;top:24px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Déposer un avis</div>
+      <div style="margin-bottom:18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6F6A;margin-bottom:10px">Votre note</div>
+        <div ref="{{ starsRef }}" style="font-size:26px;letter-spacing:.16em;color:#7E8C82;user-select:none"><span class="star" onClick="{{ s1 }}">★</span><span class="star" onClick="{{ s2 }}">★</span><span class="star" onClick="{{ s3 }}">★</span><span class="star" onClick="{{ s4 }}">★</span><span class="star" onClick="{{ s5 }}">★</span></div>
+      </div>
+      <div style="margin-bottom:18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6F6A;margin-bottom:8px">Depuis combien de temps attendez-vous ?</div><input style="width:100%;border:1px solid rgba(20,20,22,.3);background:#EFEFEB;padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:13px" placeholder="ex. 3 ans" /></div>
+      <div style="margin-bottom:18px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6F6A;margin-bottom:8px">Votre témoignage</div><textarea style="width:100%;height:110px;border:1px solid rgba(20,20,22,.3);background:#EFEFEB;padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;resize:none" placeholder="Décrivez votre patience…"></textarea></div>
+      <button style="width:100%;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px;border:1px solid #141416;cursor:pointer">Publier mon avis</button>
+      <p style="margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6;color:#6E6F6A;text-align:center">Les avis sont modérés avec la même diligence que nos livraisons.</p>
+    </aside>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }">
+class Component extends DCLogic {
+  starsRef = React.createRef();
+  paint(n) {
+    const el = this.starsRef.current;
+    if (!el) return;
+    [...el.children].forEach((c, idx) => { c.style.color = idx < n ? '#7E8C82' : 'rgba(20,20,22,.25)'; });
+  }
+  s1 = () => this.paint(1); s2 = () => this.paint(2); s3 = () => this.paint(3); s4 = () => this.paint(4); s5 = () => this.paint(5);
+  componentDidMount() { this.paint(5); }
+  renderVals() { return { starsRef: this.starsRef, s1: this.s1, s2: this.s2, s3: this.s3, s4: this.s4, s5: this.s5 }; }
+}
+</script>
+</body>
+</html>

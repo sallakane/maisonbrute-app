@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#D8D8D2;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}
+  a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+  @keyframes mbRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes mbFade{from{opacity:0}to{opacity:1}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;opacity:1!important;transform:none!important}}
+</style>
+</helmet>
+
+<section style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:80px;padding:72px 64px 120px;background:#D8D8D2;font-family:'IBM Plex Sans',sans-serif">
+
+  <!-- ============================ 1A — ACCUEIL COMPLÈTE ============================ -->
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div id="1a" style="display:flex;align-items:baseline;gap:16px;scroll-margin:80px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;background:#141416;color:#E8E8E3;padding:5px 11px">1A</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Accueil complète — hero « relique centrée »</span>
+    </div>
+
+    <div style="width:1440px;background:#E8E8E3;border:1px solid rgba(20,20,22,.20);box-shadow:0 40px 90px -30px rgba(20,20,22,.35);overflow:hidden;position:relative">
+
+      <!-- utility bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 56px;background:#141416;color:#9A9B94;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">
+        <span>Livraison mondiale — délai indéterminé</span>
+        <span style="color:#7E8C82">Le service client répond en moyenne sous 3 ans</span>
+        <span>FR · € · MMXXV</span>
+      </div>
+
+      <!-- nav -->
+      <header style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:26px 56px;border-bottom:1px solid rgba(20,20,22,.16);background:#E8E8E3">
+        <nav style="display:flex;gap:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase">
+          <a href="#">Collections</a><a href="#">Le Journal</a><a href="#">Le Suivi</a>
+        </nav>
+        <a href="#" style="justify-self:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;line-height:1;letter-spacing:-.045em;text-transform:uppercase;color:#141416">Maison&nbsp;Brute</a>
+        <nav style="justify-self:end;display:flex;gap:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase">
+          <a href="#">Compte</a><a href="#">Panier&nbsp;(0)</a>
+        </nav>
+      </header>
+
+      <!-- hero -->
+      <section style="padding:84px 56px 92px;display:flex;flex-direction:column;align-items:center;text-align:center">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#6E6F6A;animation:mbRise .8s cubic-bezier(.2,.7,.2,1) both">Objet du mois · Réf. MB-4042-77</div>
+        <div style="width:480px;height:576px;margin:38px 0 8px;border:1px solid #141416;background:repeating-linear-gradient(45deg,#CFCFC9 0 15px,#C6C6C0 15px 30px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;animation:mbRise 1s cubic-bezier(.2,.7,.2,1) .12s both">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6E6F6A">Relique</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#8A8B84">visuel produit à intégrer · 4:5</span>
+        </div>
+        <h1 style="margin:26px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:92px;line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:#141416;animation:mbRise 1s cubic-bezier(.2,.7,.2,1) .22s both">Le&nbsp;Vide&nbsp;Contenu</h1>
+        <p style="margin:26px 0 0;max-width:600px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty;animation:mbRise 1s cubic-bezier(.2,.7,.2,1) .3s both">Un flacon soufflé à la bouche, scellé sur du vide. Chaque pièce est numérotée, certifiée, et destinée à ne jamais quitter tout à fait notre entrepôt.</p>
+        <div style="margin:30px 0 0;font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.02em;color:#141416;animation:mbRise 1s cubic-bezier(.2,.7,.2,1) .38s both">2 400 €</div>
+        <div style="margin:34px 0 0;display:flex;gap:14px;animation:mbRise 1s cubic-bezier(.2,.7,.2,1) .46s both">
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px 30px;border:1px solid #141416">Confirmer mon acquisition</a>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#141416;background:transparent;padding:16px 30px;border:1px solid #141416">Consulter le bon de convoyage</a>
+        </div>
+      </section>
+
+      <!-- manifeste band -->
+      <section data-mb-reveal style="padding:78px 56px;border-top:1px solid rgba(20,20,22,.16);border-bottom:1px solid rgba(20,20,22,.16)">
+        <p style="margin:0 auto;max-width:1000px;text-align:center;font-family:'Archivo',sans-serif;font-weight:500;font-size:38px;line-height:1.16;letter-spacing:-.015em;color:#141416;text-wrap:balance">Nous concevons des objets si rares que la planète elle-même peine à les acheminer. La commande est un engagement. La livraison, une <span style="color:#7E8C82">conjecture</span>.</p>
+      </section>
+
+      <!-- rayons vedettes -->
+      <section data-mb-reveal style="padding:92px 56px 96px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px">Rayons vedettes</div>
+            <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:34px;line-height:1.05;letter-spacing:-.025em;color:#141416">Pièces choisies pour leur inaccessibilité.</h2>
+          </div>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap">Voir la collection →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px">
+
+          <article style="display:flex;flex-direction:column;gap:16px">
+            <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px);display:flex;align-items:center;justify-content:center">
+              <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:4px 8px">Édition limitée</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#141416">Le Silence Domestique</h3>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#141416;white-space:nowrap">6 200 €</span>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Absorbeur de bruit · Réf. MB-118</div>
+          </article>
+
+          <article style="display:flex;flex-direction:column;gap:16px">
+            <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px);display:flex;align-items:center;justify-content:center">
+              <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:4px 8px">Dernières unités sur Terre</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#141416">L'Objet Différé</h3>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#141416;white-space:nowrap">3 900 €</span>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Presse-papier · Réf. MB-204</div>
+          </article>
+
+          <article style="display:flex;flex-direction:column;gap:16px">
+            <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CBCBC5 0 14px,#C2C2BC 14px 28px);display:flex;align-items:center;justify-content:center">
+              <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#7E8C82;color:#E8E8E3;padding:4px 8px">Épuisé pour cause de finitude</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#6E6F6A">La Patine Anticipée</h3>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#7E8C82;text-decoration:line-through;white-space:nowrap">1 850 €</span>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82">Indisponible · Réf. MB-091</div>
+          </article>
+
+          <article style="display:flex;flex-direction:column;gap:16px">
+            <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px);display:flex;align-items:center;justify-content:center">
+              <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:4px 8px">3 exemplaires. Sur Terre.</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#141416">La Lumière Rationnée</h3>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#141416;white-space:nowrap">4 750 €</span>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Applique · Réf. MB-337</div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- bon de convoyage signature -->
+      <section data-mb-reveal style="padding:92px 56px;border-top:1px solid rgba(20,20,22,.16);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:16px">Le suivi</div>
+          <h2 style="margin:0 0 18px;font-family:'Archivo',sans-serif;font-weight:700;font-size:34px;line-height:1.06;letter-spacing:-.025em;color:#141416">Chaque acquisition est accompagnée d'un bon de convoyage.</h2>
+          <p style="margin:0 0 26px;max-width:440px;font-size:16px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Un document officiel, mis à jour en temps réel. Sa ligne d'état vous tiendra informé de la position exacte de votre colis dans l'univers — sans jamais s'engager sur une date.</p>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#141416;border-bottom:1px solid #141416;padding-bottom:3px">Suivre une commande →</a>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.85;background:#E8E8E3;border:1px solid #141416;padding:30px 32px;color:#141416;box-shadow:6px 6px 0 rgba(20,20,22,.10)">
+          <div style="display:flex;justify-content:space-between;font-weight:500;letter-spacing:.06em"><span>BON DE CONVOYAGE</span><span>N° MB-4042-77</span></div>
+          <div style="border-top:1px dashed #6E6F6A;margin:14px 0 16px"></div>
+          <div style="margin-bottom:6px">Statut&nbsp;: <span style="color:#7E8C82">{{ ticketStatut }}</span></div>
+          <div style="margin-bottom:6px">Prochaine mise à jour&nbsp;: indéterminée.</div>
+          <div style="margin-bottom:6px">Position estimée&nbsp;: entre deux centres de tri.</div>
+          <div>Empreinte carbone du trajet&nbsp;: en cours de calcul depuis 412 jours.</div>
+        </div>
+      </section>
+
+      <!-- le journal -->
+      <section data-mb-reveal style="padding:92px 56px 100px;border-top:1px solid rgba(20,20,22,.16)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px">Le Journal</div>
+            <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:34px;line-height:1.05;letter-spacing:-.025em;color:#141416">Lectures pour patienter.</h2>
+          </div>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap">Tous les articles →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+          <article style="display:flex;flex-direction:column;gap:18px">
+            <div style="aspect-ratio:16/10;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Philosophie · 7 min</div>
+            <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:26px;line-height:1.15;color:#141416">Éloge de l'attente</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Pourquoi les objets les plus précieux sont, précisément, ceux que l'on ne reçoit jamais.</p>
+          </article>
+          <article style="display:flex;flex-direction:column;gap:18px">
+            <div style="aspect-ratio:16/10;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Service · 5 min</div>
+            <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:26px;line-height:1.15;color:#141416">La rareté comme service après-vente</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Comment transformer un délai illimité en argument commercial d'exception.</p>
+          </article>
+          <article style="display:flex;flex-direction:column;gap:18px">
+            <div style="aspect-ratio:16/10;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Économie · 9 min</div>
+            <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:26px;line-height:1.15;color:#141416">Posséder sans recevoir</h3>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Petite philosophie de l'acompte, de la patience et du renoncement volontaire.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- footer -->
+      <footer style="background:#141416;color:#9A9B94;padding:76px 56px 120px;font-family:'IBM Plex Sans',sans-serif">
+        <sc-if value="{{ showCounter }}" hint-placeholder-val="{{ true }}">
+          <div style="border:1px solid #2E2F30;padding:34px 36px;margin-bottom:64px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7E8C82;margin-bottom:14px">Compteur planétaire</div>
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#9A9B94">Commandes que la Terre ne pourra jamais honorer</div>
+            </div>
+            <div style="text-align:right">
+              <div ref="{{ ordersRef }}" style="font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:500;letter-spacing:-.01em;color:#E8E8E3;line-height:1">4 042 891 337</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#6E6F6A;margin-top:8px">Ressources restantes : 0,0000317 % — recalcul en cours</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid #2E2F30">
+          <div>
+            <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:30px;letter-spacing:-.045em;text-transform:uppercase;color:#E8E8E3;margin-bottom:18px">Maison&nbsp;Brute</div>
+            <p style="margin:0;max-width:300px;font-size:14px;line-height:1.6;color:#9A9B94;text-wrap:pretty">Maison de luxe. Fondée cette année, pour l'éternité. Nos objets vous survivront ; certains ne vous parviendront pas.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
+            <div style="color:#6E6F6A;margin-bottom:6px">La Maison</div>
+            <a href="#">À propos</a><a href="#">Manifeste</a><a href="#">Le Journal</a><a href="#">Boutiques</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
+            <div style="color:#6E6F6A;margin-bottom:6px">Service</div>
+            <a href="#">Suivre ma commande</a><a href="#">Avis clients</a><a href="#">Contact</a><a href="#">CGV</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
+            <div style="color:#6E6F6A;margin-bottom:6px">Collections</div>
+            <a href="#">Objets</a><a href="#">Mobilier</a><a href="#">Éditions limitées</a><a href="#">Épuisé pour toujours</a>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#6E6F6A">
+          <span>© MMXXV Maison Brute — Tous droits réservés, aucun colis livré.</span>
+          <span>Mentions légales · Cookies · Confidentialité</span>
+        </div>
+      </footer>
+
+      <!-- cookie banner -->
+      <sc-if value="{{ showCookies }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:0;right:0;bottom:0;background:#E8E8E3;border-top:1px solid #141416;padding:20px 56px;display:flex;align-items:center;gap:28px;justify-content:space-between">
+          <p style="margin:0;max-width:760px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#3B3C3D">Nous respectons scrupuleusement votre vie privée, comme nous respectons la planète. En poursuivant, vous acceptez nos conditions — et l'idée que votre colis, lui, n'acceptera jamais d'arriver.</p>
+          <div style="display:flex;gap:12px;flex-shrink:0">
+            <button onClick="{{ dismiss }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#141416;background:transparent;padding:13px 22px;border:1px solid #141416;cursor:pointer">Paramétrer</button>
+            <button onClick="{{ dismiss }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:13px 22px;border:1px solid #141416;cursor:pointer">Tout accepter</button>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <!-- ============================ 1B — HERO PLEIN CADRE ============================ -->
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div id="1b" style="display:flex;align-items:baseline;gap:16px;scroll-margin:80px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;background:#141416;color:#E8E8E3;padding:5px 11px">1B</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Variante hero — « relique plein cadre »</span>
+    </div>
+    <div style="width:1180px;height:840px;background:#E8E8E3;border:1px solid rgba(20,20,22,.20);box-shadow:0 40px 90px -30px rgba(20,20,22,.35);overflow:hidden;position:relative">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#CBCBC5 0 18px,#C2C2BC 18px 36px);display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A8B84">Relique — visuel plein cadre à intégrer</span>
+      </div>
+      <div style="position:absolute;top:0;left:0;right:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:24px 44px;background:rgba(232,232,227,.86);border-bottom:1px solid rgba(20,20,22,.2);backdrop-filter:blur(3px)">
+        <nav style="display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase"><a href="#">Collections</a><a href="#">Le Journal</a></nav>
+        <a href="#" style="justify-self:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.045em;text-transform:uppercase;color:#141416">Maison&nbsp;Brute</a>
+        <nav style="justify-self:end;display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase"><a href="#">Compte</a><a href="#">Panier (0)</a></nav>
+      </div>
+      <div style="position:absolute;top:96px;right:44px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:#141416;text-align:right;background:rgba(232,232,227,.86);padding:10px 14px;border:1px solid #141416">Réf. MB-4042-77<br><span style="font-size:18px">2 400 €</span></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:52px 48px 46px;background:linear-gradient(transparent,rgba(232,232,227,.94) 34%);animation:mbFade 1s ease both">
+        <div style="border-top:1px solid #141416;padding-top:26px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:16px">Objet du mois</div>
+            <h1 style="margin:0 0 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:76px;line-height:.9;letter-spacing:-.04em;text-transform:uppercase;color:#141416">Le Vide Contenu</h1>
+            <p style="margin:0;max-width:520px;font-size:16px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Un flacon soufflé à la bouche, scellé sur du vide. Numéroté, certifié, et destiné à ne jamais tout à fait vous parvenir.</p>
+          </div>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:17px 32px;border:1px solid #141416;white-space:nowrap">Confirmer mon acquisition</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ 1C — HERO SPLIT ============================ -->
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div id="1c" style="display:flex;align-items:baseline;gap:16px;scroll-margin:80px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;background:#141416;color:#E8E8E3;padding:5px 11px">1C</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Variante hero — « split manifeste »</span>
+    </div>
+    <div style="width:1180px;height:840px;background:#E8E8E3;border:1px solid rgba(20,20,22,.20);box-shadow:0 40px 90px -30px rgba(20,20,22,.35);overflow:hidden;position:relative;display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:24px 44px;border-bottom:1px solid rgba(20,20,22,.16);flex-shrink:0">
+        <nav style="display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase"><a href="#">Collections</a><a href="#">Le Journal</a></nav>
+        <a href="#" style="justify-self:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.045em;text-transform:uppercase;color:#141416">Maison&nbsp;Brute</a>
+        <nav style="justify-self:end;display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase"><a href="#">Compte</a><a href="#">Panier (0)</a></nav>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0">
+        <div style="padding:64px 52px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(20,20,22,.16);animation:mbFade 1s ease both">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Objet du mois · Réf. MB-4042-77</div>
+          <h1 style="margin:0 0 22px;font-family:'Archivo',sans-serif;font-weight:800;font-size:78px;line-height:.88;letter-spacing:-.04em;text-transform:uppercase;color:#141416">Le&nbsp;Vide Contenu</h1>
+          <p style="margin:0 0 28px;max-width:420px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Un flacon soufflé à la bouche, scellé sur du vide. Chaque pièce est numérotée, certifiée, et destinée à ne jamais quitter tout à fait notre entrepôt.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:#141416;margin-bottom:30px">2 400 €</div>
+          <div style="display:flex;gap:12px">
+            <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px 28px;border:1px solid #141416">Confirmer mon acquisition</a>
+            <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#141416;padding:16px 28px;border:1px solid #141416">Le bon de convoyage</a>
+          </div>
+        </div>
+        <div style="position:relative;background:repeating-linear-gradient(45deg,#CFCFC9 0 16px,#C6C6C0 16px 32px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8A8B84">Relique — visuel à intégrer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;statutColis&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;votre colis transite par un centre de tri.&quot;, &quot;options&quot;: [&quot;votre colis a quitté notre entrepôt.&quot;, &quot;votre colis transite par un centre de tri.&quot;, &quot;léger retard : acheminement soumis aux limites physiques de la planète.&quot;, &quot;votre colis prend le temps de la réflexion.&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Suivi&quot; },
+  &quot;afficherCompteur&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Pied de page&quot; },
+  &quot;afficherBandeauCookies&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Général&quot; }
+}">
+class Component extends DCLogic {
+  state = { showCookies: true };
+  ordersRef = React.createRef();
+  dismiss = () => this.setState({ showCookies: false });
+
+  componentDidMount() {
+    const rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nodes = document.querySelectorAll('[data-mb-reveal]');
+    if (rm) {
+      nodes.forEach(n => { n.style.opacity = '1'; n.style.transform = 'none'; });
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.animation = 'mbRise .9s cubic-bezier(.2,.7,.2,1) both';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      nodes.forEach(n => io.observe(n));
+    } else {
+      nodes.forEach(n => { n.style.opacity = '1'; });
+    }
+
+    const el = this.ordersRef.current;
+    if (el) {
+      let v = 4042891337;
+      if (!rm) {
+        this._t = setInterval(() => {
+          v += Math.floor(Math.random() * 7) + 1;
+          if (this.ordersRef.current) this.ordersRef.current.textContent = v.toLocaleString('fr-FR');
+        }, 1200);
+      }
+    }
+  }
+
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+
+  renderVals() {
+    return {
+      showCookies: (this.props.afficherBandeauCookies ?? true) && this.state.showCookies,
+      showCounter: this.props.afficherCompteur ?? true,
+      ticketStatut: this.props.statutColis ?? 'votre colis transite par un centre de tri.',
+      dismiss: this.dismiss,
+      ordersRef: this.ordersRef,
+    };
+  }
+}
+</script>
+</body>
+</html>

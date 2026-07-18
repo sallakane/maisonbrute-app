@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="padding:64px 56px 48px;text-align:center;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#6E6F6A;margin-bottom:20px">Le Journal — Maison Brute · N° 14</div>
+    <h1 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:72px;line-height:1;letter-spacing:-.01em;color:#141416">Le&nbsp;Journal</h1>
+    <p style="margin:20px auto 0;max-width:560px;font-size:16px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Réflexions sur le luxe, la lenteur et l'art de désirer sans jamais recevoir.</p>
+  </section>
+
+  <a href="#" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="min-height:460px;background:repeating-linear-gradient(45deg,#CFCFC9 0 16px,#C6C6C0 16px 32px);border-right:1px solid rgba(20,20,22,.16);position:relative"><span style="position:absolute;bottom:20px;left:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Visuel à intégrer</span></div>
+    <div style="padding:64px 56px;display:flex;flex-direction:column;justify-content:center;background:#E1E5E0">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A;margin-bottom:20px">À la une · Philosophie · 7 min</div>
+      <h2 style="margin:0 0 20px;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.08;color:#141416">Éloge de l'attente</h2>
+      <p style="margin:0 0 24px;max-width:460px;font-size:17px;line-height:1.65;color:#2C2D2E;text-wrap:pretty">Nous avons appris à confondre la possession et la réception. Et si l'objet le plus précieux était celui que l'on attend indéfiniment ? Petit traité à l'usage des impatients.</p>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#141416;border-bottom:1px solid #141416;padding-bottom:3px;align-self:flex-start">Lire l'article →</span>
+    </div>
+  </a>
+
+  <section style="padding:72px 56px 96px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px 40px">
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Service · 5 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">La rareté comme service après-vente</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Comment transformer un délai illimité en argument commercial d'exception.</p>
+      </a>
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Économie · 9 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">Posséder sans recevoir</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Petite philosophie de l'acompte, de la patience et du renoncement volontaire.</p>
+      </a>
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Écologie · 6 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">La plus faible empreinte : ne rien livrer</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Le colis le plus vert est celui qui ne prend jamais la route. Étude de cas.</p>
+      </a>
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Design · 8 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">Anatomie d'un bon de convoyage</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Pourquoi le plus bel objet que nous produisons est un document que vous ne posséderez jamais vraiment.</p>
+      </a>
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Société · 4 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">Le client, ce héros patient</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Portraits de celles et ceux qui attendent depuis des années, et qui recommandent malgré tout.</p>
+      </a>
+      <a href="#" style="display:flex;flex-direction:column;gap:18px">
+        <div style="aspect-ratio:16/11;border:1px solid rgba(20,20,22,.24);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Manifeste · 11 min</div>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:28px;line-height:1.12;color:#141416">Contre la livraison</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Notre credo, en toutes lettres : ralentir, désirer, ne jamais conclure.</p>
+      </a>
+    </div>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }"></script>
+</body>
+</html>

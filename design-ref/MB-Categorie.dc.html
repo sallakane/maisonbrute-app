@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="padding:64px 56px 40px;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6E6F6A;margin-bottom:20px"><a href="MB-Accueil.dc.html">Accueil</a> / Collections / <span style="color:#141416">Objets</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+      <div>
+        <h1 style="margin:0 0 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:64px;line-height:.92;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Objets</h1>
+        <p style="margin:0;max-width:560px;font-size:16px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">Une sélection de pièces d'exception, disponibles à l'achat immédiat et à la livraison différée sans terme.</p>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;text-align:right">42 891 337 objets<br>dont 9 encore sur Terre</div>
+    </div>
+  </section>
+
+  <section style="display:grid;grid-template-columns:230px 1fr;gap:56px;padding:48px 56px 96px">
+    <aside style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em">
+      <div style="text-transform:uppercase;letter-spacing:.2em;color:#141416;font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Filtrer</div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:24px;border-bottom:1px solid rgba(20,20,22,.16);margin-bottom:24px;text-transform:uppercase">
+        <a href="#" style="color:#141416">Disponible sur Terre</a>
+        <a href="#" style="color:#141416">Édition limitée</a>
+        <a href="#" style="color:#141416">Épuisé par finitude</a>
+        <a href="#" style="color:#141416">Objets · Mobilier</a>
+      </div>
+      <div style="text-transform:uppercase;letter-spacing:.2em;color:#141416;font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Prix</div>
+      <div style="display:flex;flex-direction:column;gap:12px;text-transform:uppercase">
+        <a href="#" style="color:#141416">Moins de 3 000 €</a>
+        <a href="#" style="color:#141416">3 000 – 6 000 €</a>
+        <a href="#" style="color:#141416">Au-delà du raisonnable</a>
+      </div>
+    </aside>
+
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.16);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A">
+        <span>9 objets affichés</span>
+        <span style="display:flex;gap:20px"><span style="color:#141416">Trier par :</span><a href="#" style="color:#7E8C82">prix décroissant ▾</a><a href="#">par inutilité</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px">
+        <dc-import name="MB-ProductCard" title="Le Silence Domestique" price="6 200 €" ref="MB-118" meta="Absorbeur de bruit · Réf. MB-118" badge="Édition limitée" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="La Lumière Rationnée" price="4 750 €" ref="MB-337" meta="Applique · Réf. MB-337" badge="3 exemplaires. Sur Terre." hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="L'Objet Différé" price="3 900 €" ref="MB-204" meta="Presse-papier · Réf. MB-204" badge="Dernières unités sur Terre" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="Le Vide Contenu" price="2 400 €" ref="MB-4042" meta="Flacon · Réf. MB-4042" badge="Objet du mois" href="MB-Produit.dc.html" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="La Patine Anticipée" price="1 850 €" ref="MB-091" badge="Épuisé pour cause de finitude" sold="{{ true }}" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="Le Courant d'Air Signé" price="2 900 €" ref="MB-052" meta="Éventail · Réf. MB-052" badge="Fait main, jamais expédié" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="L'Ombre Portée" price="5 400 €" ref="MB-410" meta="Sculpture · Réf. MB-410" badge="Pièce unique" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="Le Reflet Différé" price="3 200 €" ref="MB-263" badge="Épuisé pour cause de finitude" sold="{{ true }}" hint-size="100%,420px"></dc-import>
+        <dc-import name="MB-ProductCard" title="La Poussière Certifiée" price="990 €" ref="MB-001" meta="Écrin · Réf. MB-001" badge="Accessible" hint-size="100%,420px"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }"></script>
+</body>
+</html>

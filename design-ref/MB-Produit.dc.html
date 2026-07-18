@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="display:grid;grid-template-columns:1.05fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="border-right:1px solid rgba(20,20,22,.16);display:flex;flex-direction:column">
+      <div style="flex:1;min-height:640px;position:relative;background:repeating-linear-gradient(45deg,#CFCFC9 0 16px,#C6C6C0 16px 32px);display:flex;align-items:center;justify-content:center">
+        <span style="position:absolute;top:20px;left:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:5px 10px">Objet du mois</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8A8B84">Relique — visuel produit à intégrer · 4:5</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(20,20,22,.16)">
+        <div style="aspect-ratio:1;background:repeating-linear-gradient(45deg,#CFCFC9 0 10px,#C6C6C0 10px 20px);border-right:1px solid rgba(20,20,22,.16)"></div>
+        <div style="aspect-ratio:1;background:repeating-linear-gradient(45deg,#CBCBC5 0 10px,#C2C2BC 10px 20px);border-right:1px solid rgba(20,20,22,.16)"></div>
+        <div style="aspect-ratio:1;background:repeating-linear-gradient(45deg,#CFCFC9 0 10px,#C6C6C0 10px 20px);border-right:1px solid rgba(20,20,22,.16)"></div>
+        <div style="aspect-ratio:1;background:repeating-linear-gradient(45deg,#CBCBC5 0 10px,#C2C2BC 10px 20px)"></div>
+      </div>
+    </div>
+
+    <div style="padding:56px 56px 64px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px"><a href="MB-Categorie.dc.html">Objets</a> / <span style="color:#141416">Le Vide Contenu</span></div>
+      <h1 style="margin:0 0 8px;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Le Vide Contenu</h1>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;margin-bottom:28px">Réf. MB-4042-77 · Flacon soufflé main</div>
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:30px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:500;color:#141416">2 400 €</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82">— dont 0 € de frais de livraison, jamais engagés</span>
+      </div>
+      <p style="margin:0 0 22px;font-size:17px;line-height:1.7;color:#2C2D2E;text-wrap:pretty">Soufflé à la bouche par un maître verrier, <em>Le Vide Contenu</em> renferme précisément rien. Ce rien est certifié, numéroté et scellé à la cire. Un objet total, qui ne demande qu'à être possédé — et qui, en retour, ne vous demandera jamais où le livrer.</p>
+      <p style="margin:0 0 34px;font-size:15px;line-height:1.7;color:#6E6F6A;text-wrap:pretty">Édition limitée à la patience de son acquéreur. Chaque pièce quitte l'atelier accompagnée d'un bon de convoyage nominatif, dont la ligne d'état évoluera sans jamais aboutir.</p>
+
+      <div style="display:flex;gap:14px;margin-bottom:20px">
+        <a href="MB-Panier.dc.html" style="flex:1;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:20px 30px;border:1px solid #141416">Confirmer mon acquisition</a>
+        <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#141416;background:transparent;padding:20px 26px;border:1px solid #141416">Conserver</a>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82;margin-bottom:40px">● Il ne reste que 3 exemplaires. Sur Terre.</div>
+
+      <div style="border-top:1px solid rgba(20,20,22,.16);padding-top:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:18px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Livraison estimée</div>
+        <dc-import name="MB-Ticket" ref="MB-4042-77" statut="votre colis sera confié à un transporteur dès que possible." jours="0" hint-size="100%,200px"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="padding:72px 56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px">Le détail</div>
+      <dl style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#141416">
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Matière</dt><dd style="margin:0">Verre soufflé, vide</dd></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Contenance</dt><dd style="margin:0">0 mL, certifié</dd></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Dimensions</dt><dd style="margin:0">18 × 6 × 6 cm</dd></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Provenance</dt><dd style="margin:0">Atelier Maison Brute</dd></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0"><dt style="color:#6E6F6A">Délai d'acheminement</dt><dd style="margin:0;color:#7E8C82">indéterminé</dd></div>
+      </dl>
+    </div>
+    <div style="padding:72px 56px;background:#E1E5E0">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:30px;line-height:1.3;color:#141416;text-wrap:pretty">« Posséder <em>Le Vide Contenu</em>, c'est accepter que le désir n'a jamais eu besoin de son objet pour être comblé. »</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;margin-top:24px">— Le Journal, Maison Brute</div>
+    </div>
+  </section>
+
+  <section style="padding:80px 56px;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Avis vérifiés</div>
+        <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.02em;color:#141416">★★★★★ <span style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#6E6F6A;letter-spacing:0">4,9 / 5 — 1 204 avis, 0 réception</span></h2>
+      </div>
+      <a href="MB-Avis.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Tous les avis →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+      <div style="border:1px solid rgba(20,20,22,.18);padding:28px 26px">
+        <div style="color:#7E8C82;letter-spacing:.2em;margin-bottom:14px">★★★★★</div>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#2C2D2E">Commandé en 2022. Toujours pas reçu. Le service client est admirable de constance. Je recommande vivement.</p>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Hélène D. · Cliente fidèle depuis 4 ans</div>
+      </div>
+      <div style="border:1px solid rgba(20,20,22,.18);padding:28px 26px">
+        <div style="color:#7E8C82;letter-spacing:.2em;margin-bottom:14px">★★★★★</div>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#2C2D2E">L'objet n'est pas encore arrivé, mais l'idée de l'objet, elle, m'accompagne chaque jour. C'est peut-être cela, le vrai luxe.</p>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Marc-Antoine V. · En attente sereine</div>
+      </div>
+      <div style="border:1px solid rgba(20,20,22,.18);padding:28px 26px">
+        <div style="color:#7E8C82;letter-spacing:.2em;margin-bottom:14px">★★★★★</div>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#2C2D2E">Le bon de convoyage est encadré dans mon salon. Il fait plus d'effet que n'importe quel objet réellement livré. Bravo.</p>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Sabine R. · Collectionneuse d'attentes</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:80px 56px 96px">
+    <h2 style="margin:0 0 40px;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.02em;color:#141416">On ne les recevra pas non plus.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px">
+      <dc-import name="MB-ProductCard" title="Le Silence Domestique" price="6 200 €" ref="MB-118" meta="Absorbeur de bruit · Réf. MB-118" badge="Édition limitée" hint-size="100%,420px"></dc-import>
+      <dc-import name="MB-ProductCard" title="L'Objet Différé" price="3 900 €" ref="MB-204" meta="Presse-papier · Réf. MB-204" badge="Dernières unités sur Terre" hint-size="100%,420px"></dc-import>
+      <dc-import name="MB-ProductCard" title="La Lumière Rationnée" price="4 750 €" ref="MB-337" meta="Applique · Réf. MB-337" badge="3 exemplaires. Sur Terre." hint-size="100%,420px"></dc-import>
+      <dc-import name="MB-ProductCard" title="La Patine Anticipée" price="1 850 €" ref="MB-091" badge="Épuisé pour cause de finitude" sold="{{ true }}" hint-size="100%,420px"></dc-import>
+    </div>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>a{text-decoration:none}</style>
+</helmet>
+<a href="{{ href }}" style="display:flex;flex-direction:column;gap:16px;font-family:'IBM Plex Sans',sans-serif">
+  <sc-if value="{{ sold }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CBCBC5 0 14px,#C2C2BC 14px 28px);display:flex;align-items:center;justify-content:center">
+      <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#7E8C82;color:#E8E8E3;padding:4px 8px">{{ badge }}</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+      <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#6E6F6A">{{ title }}</h3>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#7E8C82;text-decoration:line-through;white-space:nowrap">{{ price }}</span>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82">Indisponible · Réf. {{ ref }}</div>
+  </sc-if>
+  <sc-if value="{{ available }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,#CFCFC9 0 14px,#C6C6C0 14px 28px);display:flex;align-items:center;justify-content:center">
+      <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:4px 8px">{{ badge }}</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+      <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#141416">{{ title }}</h3>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#141416;white-space:nowrap">{{ price }}</span>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">{{ meta }}</div>
+  </sc-if>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 320, &quot;height&quot;: 440 },
+  &quot;title&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Le Silence Domestique&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;price&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;6 200 €&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ref&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;MB-118&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;meta&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Absorbeur de bruit · Réf. MB-118&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;badge&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Édition limitée&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;href&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;MB-Produit.dc.html&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;sold&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const sold = this.props.sold ?? false;
+    return {
+      sold,
+      available: !sold,
+      href: this.props.href ?? 'MB-Produit.dc.html',
+      title: this.props.title ?? 'Objet sans nom',
+      price: this.props.price ?? '0 €',
+      ref: this.props.ref ?? 'MB-000',
+      badge: this.props.badge ?? 'Édition limitée',
+      meta: this.props.meta ?? 'Objet · Réf. MB-000',
+    };
+  }
+}
+</script>
+</body>
+</html>

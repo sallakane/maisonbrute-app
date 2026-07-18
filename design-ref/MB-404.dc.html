@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E8E8E3;-webkit-font-smoothing:antialiased;font-family:'IBM Plex Sans',sans-serif;color:#141416}
+  a{color:#7E8C82;text-decoration:none;transition:color .25s ease}a:hover{color:#141416}
+  ::selection{background:#7E8C82;color:#E8E8E3}
+</style>
+</helmet>
+<div>
+  <dc-import name="MB-Nav" cart-count="0" hint-size="100%,116px"></dc-import>
+
+  <section style="min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 56px;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:200px;line-height:.82;letter-spacing:-.05em;color:#141416">404</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#7E8C82;margin:24px 0 20px">Erreur · Page introuvable</div>
+    <h1 style="margin:0 0 20px;font-family:'Archivo',sans-serif;font-weight:700;font-size:44px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase;color:#141416">Cette page a été délocalisée.</h1>
+    <p style="margin:0 auto 36px;max-width:520px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Elle transite actuellement par un centre de tri. Sa date de réapparition est indéterminée. Nous vous invitons à patienter, ou à reprendre votre contemplation ailleurs.</p>
+    <div style="display:flex;gap:14px">
+      <a href="MB-Accueil.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px 30px;border:1px solid #141416">Retour à l'accueil</a>
+      <a href="MB-Suivi.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#141416;padding:16px 30px;border:1px solid #141416">Suivre cette page</a>
+    </div>
+  </section>
+
+  <dc-import name="MB-Footer" hint-size="100%,540px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 } }"></script>
+</body>
+</html>
