@@ -1,0 +1,11 @@
+# Fait « avancer » le suivi de toutes les commandes payées, une fois par jour :
+# prépare, expédie, met en transit, puis ajoute un statut de dérive existentielle.
+# Aucune commande n'atteint jamais « livree » — c'est le principe de la Maison.
+#
+# Installer sur le VPS :
+#   sudo cp infra/maisonbrute-advance-tracking.cron /etc/cron.d/maisonbrute-advance-tracking
+#
+# 6 h 10 : tôt le matin, décalé de l'heure ronde pour ne pas concourir avec la
+# sauvegarde (3 h 20). `exec` ne recrée pas le conteneur — sans risque.
+
+10 6 * * * deploy cd /var/www/maisonbrute-app && /usr/bin/docker compose -f compose.prod.yaml exec -T app php bin/console app:orders:advance-tracking >/dev/null 2>&1

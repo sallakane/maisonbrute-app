@@ -1,0 +1,7 @@
+# Sauvegarde quotidienne de la base. Installer :
+#   sudo cp infra/maisonbrute-backup.cron /etc/cron.d/maisonbrute-backup
+#
+# 3 h 20 : hors heures de commande. EnvironmentFile n'existe pas pour cron ; le
+# script lit POSTGRES_USER/DB via le compose (défauts app/app) — suffisant pour pg_dump.
+
+20 3 * * * deploy /usr/local/bin/maisonbrute-backup >> /var/log/maisonbrute-backup.log 2>&1

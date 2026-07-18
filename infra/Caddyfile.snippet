@@ -1,0 +1,33 @@
+# Bloc à AJOUTER au Caddyfile mutualisé du VPS (/etc/caddy/Caddyfile), puis :
+#   sudo caddy validate --config /etc/caddy/Caddyfile   # valider AVANT
+#   sudo systemctl reload caddy                          # reload = sans coupure
+#
+# Site SEO-first : PAS de X-Robots-Tag noindex — il DOIT être indexé.
+#
+# ⚠️ VPS MUTUALISÉ — vérifier le port AVANT (ss -tlnp | grep 127.0.0.1:80).
+# Ports occupés au 2026-07-16 : 8001 (rapport-generator), 8009/8080 (sunu-cagnotte),
+# 8082 (intranet BCEAO), 8083 (Keycloak), 8084 (Maison Brute).
+# 8084 = APP_HTTP_PORT de .env.local. Un port qui pointe vers le mauvais service
+# publierait le voisin sur maisonbrute.fr, indexable de surcroît.
+#
+# ⚠️ Ce domaine (maisonbrute.fr:8084) était réservé à l'ANCIEN projet ~/Projects/maisonbrute.
+# Cette app (maisonbrute-app) le REMPLACE : n'en déployer qu'UNE SEULE sur 8084.
+#
+# Prérequis DNS : deux A records vers l'IP du VPS :
+#   maisonbrute.fr        -> IP
+#   www.maisonbrute.fr    -> IP
+
+www.maisonbrute.fr {
+    redir https://maisonbrute.fr{uri} permanent
+}
+
+maisonbrute.fr {
+    encode zstd gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+    # FrankenPHP écoute sur 127.0.0.1:8084 (compose.prod.yaml, APP_HTTP_PORT).
+    reverse_proxy localhost:8084
+}

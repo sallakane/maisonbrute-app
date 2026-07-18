@@ -1,0 +1,91 @@
+# Pile de PRODUCTION (VPS mutualisé), auto-suffisante — à utiliser SEULE :
+#
+#   docker compose -f compose.prod.yaml up -d --build
+#
+# (Le dev courant, lui, se fait via `symfony server` + compose.yaml : Postgres/Mailpit.)
+#
+# FrankenPHP sert en HTTP clair sur :80 dans le conteneur ; le Caddy mutualisé du VPS
+# termine le TLS et reverse-proxy le domaine vers 127.0.0.1:${APP_HTTP_PORT}.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# SECRETS — comment ils arrivent (ne pas « simplifier ») :
+# L'image de prod fige un .env.local.php au build (`composer dump-env prod`) avec
+# les valeurs de .env — donc des secrets VIDES (.dockerignore exclut .env.local).
+# Tant que ce .env.local.php existe, Symfony NE lit plus les fichiers .env* : seule
+# une VRAIE variable d'environnement l'emporte. D'où `env_file: .env.local` ci-dessous,
+# qui injecte les secrets comme variables d'environnement réelles.
+# Fichier absent ⇒ Compose refuse de démarrer, volontairement.
+# ─────────────────────────────────────────────────────────────────────────────
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      # Défaut `app` volontaire : permet à `exec`/`logs`/`ps` (crons) de fonctionner sans
+      # le secret. Le VRAI mot de passe est fourni au `up` par systemd (EnvironmentFile).
+      # Ne jamais lancer `up` à la main (il retomberait sur `app`) — cf. DEPLOIEMENT.md.
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-app}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      target: frankenphp_prod
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - .env.local
+    environment:
+      APP_ENV: prod
+      SERVER_NAME: ":80"
+      # Migrations + setup Messenger au démarrage de CE service uniquement (pas du
+      # worker, qui partirait en concurrence sur le même schéma).
+      RUN_MIGRATIONS: "1"
+      # Le Caddy du VPS termine le TLS et parle à FrankenPHP en HTTP clair. Sans
+      # proxy de confiance, Symfony ignore X-Forwarded-Proto, se croit en HTTP et
+      # génère toutes les URL absolues en http:// (canoniques, sitemap, JSON-LD,
+      # OG, redirections). Sur un site SEO-first, c'est fatal. `private_ranges` :
+      # le port n'est bindé que sur la loopback, le seul chemin entrant est Caddy.
+      SYMFONY_TRUSTED_PROXIES: private_ranges
+    ports:
+      # Bindé sur la loopback uniquement : jamais exposé directement. Port réservé
+      # à Maison Brute sur ce VPS = 8084 (cf. infra/Caddyfile.snippet).
+      - "127.0.0.1:${APP_HTTP_PORT:-8084}:80"
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      target: frankenphp_prod
+    # Attend que l'app soit healthy : les migrations ET la table messenger_messages
+    # (messenger:setup-transports) sont alors faites. Sans ça, le worker démarre avant
+    # et échoue au 1er consume (table absente) — rattrapé par restart, mais salement.
+    depends_on:
+      database:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    env_file:
+      - .env.local
+    environment:
+      APP_ENV: prod
+    # Ce conteneur ne sert pas de HTTP : le healthcheck de l'image (curl :2019) ne
+    # s'applique pas. On le désactive pour ne pas le marquer « unhealthy » à tort.
+    healthcheck:
+      disable: true
+    # Consomme les e-mails (async en prod). --time-limit fait redémarrer le worker
+    # périodiquement (libère la mémoire) ; restart: unless-stopped le relance.
+    command: ["php", "bin/console", "messenger:consume", "async", "-v", "--time-limit=3600"]
+    restart: unless-stopped
+
+volumes:
+  database_data:

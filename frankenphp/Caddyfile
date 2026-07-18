@@ -1,0 +1,21 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+	frankenphp
+}
+
+{$CADDY_EXTRA_CONFIG}
+
+# SERVER_NAME=:80 : le TLS est terminé en amont par le Caddy mutualisé du VPS,
+# qui reverse-proxy le domaine vers 127.0.0.1:${APP_HTTP_PORT}.
+{$SERVER_NAME:localhost} {
+	log {
+		output stderr
+		format json
+	}
+
+	root * /app/public
+	encode zstd br gzip
+
+	# Sert index.php pour toutes les routes Symfony (SSR).
+	php_server
+}
