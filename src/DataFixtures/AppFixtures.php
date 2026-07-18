@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Maison;
+use App\Entity\JournalArticle;
 use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Entity\Review;
@@ -158,6 +159,41 @@ class AppFixtures extends Fixture
                 $review->setProduct($produits[$a['produit']]);
             }
             $manager->persist($review);
+        }
+
+        // --- Journal (articles éditoriaux SEO) ---
+        $articles = [
+            [
+                'titre' => "Éloge de l'attente", 'slug' => 'eloge-de-l-attente',
+                'rubrique' => 'Philosophie', 'temps' => 7, 'jours' => 12,
+                'chapo' => "Nous avons appris à confondre la possession et la réception. Et si l'objet le plus précieux était celui que l'on attend indéfiniment ? Petit traité à l'usage des impatients.",
+                'corps' => "<p>On croit désirer un objet. En réalité, on désire le moment qui précède l'objet — cet intervalle suspendu où tout est encore possible, où la déception n'a pas eu lieu.</p><p>La Maison Brute a fait de cet intervalle son unique produit. Nos objets ne vous parviendront pas, et c'est précisément là leur valeur : ils restent, pour toujours, à l'état de promesse.</p><h2>Le colis de Schrödinger</h2><p>Tant que la boîte n'est pas ouverte, l'objet est à la fois parfait et absent. L'ouvrir, ce serait risquer le réel. Nous vous épargnons ce risque.</p><p>Attendre, ce n'est pas perdre son temps. C'est le tenir en réserve.</p>",
+            ],
+            [
+                'titre' => 'La rareté comme service après-vente', 'slug' => 'rarete-service-apres-vente',
+                'rubrique' => 'Service', 'temps' => 5, 'jours' => 20,
+                'chapo' => "Comment transformer un délai illimité en argument commercial d'exception.",
+                'corps' => "<p>Le service après-vente traditionnel répare. Le nôtre entretient — non pas l'objet, mais le désir de l'objet.</p><p>Chaque relance que nous vous adressons est une œuvre en soi : une lettre qui ne dit rien, mais le dit admirablement. Nos clients les collectionnent.</p><p>La rareté n'est pas un défaut d'approvisionnement. C'est une politique.</p>",
+            ],
+            [
+                'titre' => 'La plus faible empreinte : ne rien livrer', 'slug' => 'plus-faible-empreinte-ne-rien-livrer',
+                'rubrique' => 'Écologie', 'temps' => 6, 'jours' => 30,
+                'chapo' => "Le colis le plus vert est celui qui ne prend jamais la route. Étude de cas.",
+                'corps' => "<p>Un camion qui ne roule pas ne pollue pas. Un avion cargo au sol est un avion vertueux. La logistique la plus durable est celle qui n'a jamais lieu.</p><p>En ne livrant rien, la Maison Brute atteint une empreinte carbone que nos concurrents mettront des décennies à approcher : celle de l'immobilité parfaite.</p><p>Vous n'avez pas acheté un objet. Vous avez financé une absence de trajet. La planète vous remercie.</p>",
+            ],
+        ];
+
+        foreach ($articles as $art) {
+            $manager->persist((new JournalArticle())
+                ->setTitre($art['titre'])
+                ->setSlug($art['slug'])
+                ->setRubrique($art['rubrique'])
+                ->setTempsLecture($art['temps'])
+                ->setChapo($art['chapo'])
+                ->setCorps($art['corps'])
+                ->setSeoTitle($art['titre'].' — Le Journal, Maison Brute')
+                ->setSeoDescription(mb_substr($art['chapo'], 0, 150))
+                ->setPublieLe(new \DateTimeImmutable('-'.$art['jours'].' days')));
         }
 
         $manager->flush();

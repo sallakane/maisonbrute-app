@@ -58,7 +58,7 @@ class AdminSmokeTest extends WebTestCase
         $client = static::createClient();
         $client->loginUser($this->getAdmin());
 
-        foreach (['category', 'maison', 'user', 'order', 'review'] as $entity) {
+        foreach (['category', 'maison', 'user', 'order', 'review', 'journal-article'] as $entity) {
             $client->request('GET', '/admin/'.$entity);
             $this->assertResponseIsSuccessful(sprintf('CRUD "%s" doit répondre 200.', $entity));
         }

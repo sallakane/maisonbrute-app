@@ -61,7 +61,21 @@ php bin/phpunit                                   # tests
 4. ✅ Panier (session) → tunnel `/commande` → Stripe test → webhook → `Order` + e-mail confirmation.
 5. ✅ Workflow (`en_transit ⟲`, jamais `livree`) + Scheduler tracking + bon de convoyage + page `/suivi`.
 6. ✅ Avis : dépôt (`/avis` + fiche produit) + modération EasyAdmin + affichage + `AggregateRating` JSON-LD.
-7→9. Journal (CMS SEO) · compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+7. ✅ Journal : CMS éditorial (`/journal`, `/journal/{slug}`) + CRUD EasyAdmin + JSON-LD BlogPosting.
+8→9. Compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+
+## Journal (JournalArticle)
+
+- Entité `JournalArticle` (titre, slug, rubrique, tempsLecture, chapo, corps HTML, auteur, seo, `publieLe`).
+- Publié si `publieLe` renseigné **et passé** (null = brouillon ; futur = programmé). Filtré côté repo.
+- Pages `/journal` (hero « à la une » + grille) et `/journal/{slug}` (article + JSON-LD **BlogPosting**).
+- CRUD EasyAdmin « Journal » ; corps saisi en HTML (rendu `|raw`). Seed : 3 articles.
+
+## Tests — isolation
+
+- **`dama/doctrine-test-bundle`** enveloppe chaque test dans une transaction annulée (`phpunit.dist.xml` → extension).
+  La DB de test garde les **fixtures comme baseline** ; les mutations d'un test sont annulées. Recharger la baseline :
+  `php bin/console --env=test doctrine:fixtures:load`.
 
 ## Avis (Review)
 

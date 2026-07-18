@@ -39,6 +39,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkTo(CategoryCrudController::class, 'Catégories', 'fa fa-sitemap');
         yield MenuItem::linkTo(MaisonCrudController::class, 'Maisons', 'fa fa-landmark');
 
+        yield MenuItem::section('Éditorial');
+        yield MenuItem::linkTo(JournalArticleCrudController::class, 'Journal', 'fa fa-newspaper');
+
         yield MenuItem::section('Accès');
         yield MenuItem::linkTo(UserCrudController::class, 'Utilisateurs', 'fa fa-user-shield');
 

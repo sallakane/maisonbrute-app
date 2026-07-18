@@ -1,0 +1,63 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = article.seoDescription ?? article.chapo|striptags|slice(0, 160) %}
+{% set canonical = url('app_journal_article', { slug: article.slug }) %}
+
+{% block title %}{{ article.seoTitle ?? (article.titre ~ ' — Le Journal, Maison Brute') }}{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{% block head_extra %}
+  <script type="application/ld+json">
+  {{ {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    'headline': article.titre,
+    'description': article.chapo|striptags,
+    'articleSection': article.rubrique,
+    'datePublished': article.publieLe ? article.publieLe|date('c') : null,
+    'dateModified': article.publieLe ? article.publieLe|date('c') : null,
+    'author': { '@type': 'Organization', 'name': article.auteur },
+    'publisher': { '@type': 'Organization', 'name': 'Maison Brute' },
+    'mainEntityOfPage': canonical,
+    'url': canonical
+  }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}
+  </script>
+  <style>
+    .mb-article p { margin: 0 0 1.4em; text-wrap: pretty; }
+    .mb-article h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -.02em; margin: 1.8em 0 .6em; color: #141416; }
+    .mb-article a { border-bottom: 1px solid currentColor; }
+  </style>
+{% endblock %}
+
+{% block storefront %}
+  <article style="max-width:760px;margin:0 auto;padding:72px 24px 40px">
+    <div style="text-align:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A;margin-bottom:20px">
+        <a href="{{ path('app_journal') }}" style="color:#6E6F6A">Le Journal</a> · {{ article.rubrique }} · {{ article.tempsLecture }} min de lecture
+      </div>
+      <h1 style="margin:0 0 22px;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:52px;line-height:1.06;letter-spacing:-.01em;color:#141416">{{ article.titre }}</h1>
+      <p style="margin:0 auto 8px;max-width:600px;font-size:19px;line-height:1.6;color:#3B3C3D;text-wrap:pretty">{{ article.chapo }}</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8A8B84;margin-top:18px">Par {{ article.auteur }}{% if article.publieLe %} · {{ article.publieLe|date('d/m/Y') }}{% endif %}</div>
+    </div>
+  </article>
+
+  <div style="width:100%;aspect-ratio:16/7;max-height:420px;background:repeating-linear-gradient(45deg,#CFCFC9 0 16px,#C6C6C0 16px 32px);border-top:1px solid rgba(20,20,22,.16);border-bottom:1px solid rgba(20,20,22,.16)"></div>
+
+  <div class="mb-article" style="max-width:680px;margin:0 auto;padding:56px 24px 88px;font-size:18px;line-height:1.75;color:#20211F">
+    {{ article.corps|raw }}
+  </div>
+
+  {% if recents is not empty %}
+    <section style="padding:64px 56px 96px;border-top:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:36px">À lire ensuite</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:40px">
+        {% for autre in recents %}
+          <a href="{{ path('app_journal_article', { slug: autre.slug }) }}" style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">{{ autre.rubrique }} · {{ autre.tempsLecture }} min</div>
+            <h3 style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:24px;line-height:1.14;color:#141416">{{ autre.titre }}</h3>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}
