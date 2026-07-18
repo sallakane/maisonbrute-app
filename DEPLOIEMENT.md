@@ -65,6 +65,9 @@ docker compose -f compose.prod.yaml ps          # app/worker/database « healthy
 curl -s localhost:8084/health                    # {"status":"ok","db":"ok"}
 docker compose -f compose.prod.yaml logs app | grep -i migrat
 
+# Créer le compte admin (pas de seed démo en prod)
+docker compose -f compose.prod.yaml exec app php bin/console app:create-admin toi@maisonbrute.fr -p 'MotDePasseFort'
+
 # ── 5. Le domaine (Caddy mutualisé)
 sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.$(date +%F-%H%M%S)
 sudo $EDITOR /etc/caddy/Caddyfile                # y coller infra/Caddyfile.snippet
@@ -99,8 +102,8 @@ docker compose -f compose.prod.yaml logs -f app
 docker compose -f compose.prod.yaml logs -f worker
 # Console dans le conteneur (sans risque)
 docker compose -f compose.prod.yaml exec app php bin/console <cmd>
-# Créer un admin (le seed de démo n'est PAS chargé en prod)
-docker compose -f compose.prod.yaml exec app php bin/console doctrine:query:sql "..."   # ou une commande dédiée
+# Créer un admin (le seed de démo n'est PAS chargé en prod ; mot de passe demandé si -p absent)
+docker compose -f compose.prod.yaml exec app php bin/console app:create-admin toi@maisonbrute.fr -p 'MotDePasseFort'
 ```
 
 > Le **worker** consomme les e-mails (async en prod). S'il meurt, les e-mails s'accumulent
