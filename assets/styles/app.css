@@ -1,3 +1,40 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Maison Brute — design tokens (extraits des maquettes design-ref/)  *
+ * Tailwind v4 : configuration CSS-first via @theme.                  *
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Palette */
+  --color-paper: #E8E8E3;      /* fond principal */
+  --color-paper-alt: #E1E5E0;  /* fond de section alterné */
+  --color-ink: #141416;        /* encre / texte fort */
+  --color-sage: #7E8C82;       /* vert-de-gris, accent */
+  --color-graphite: #3B3C3D;   /* texte courant */
+  --color-mute: #6E6F6A;       /* labels discrets */
+
+  /* Typographies */
+  --font-display: 'Archivo', sans-serif;      /* titres */
+  --font-sans: 'IBM Plex Sans', sans-serif;   /* corps */
+  --font-mono: 'IBM Plex Mono', monospace;    /* labels, prix, refs */
+  --font-serif: 'Playfair Display', serif;    /* accents italiques */
+}
+
+/* Réglages de base repris des maquettes */
 body {
-    background-color: skyblue;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--color-sage); text-decoration: none; transition: color .25s ease; }
+a:hover { color: var(--color-ink); }
+::selection { background: var(--color-sage); color: var(--color-paper); }
+
+/* Animation d'entrée (montée) — respecte prefers-reduced-motion */
+@keyframes mbRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

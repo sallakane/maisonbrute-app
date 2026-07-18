@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Visuel produit à intégrer">
+  <defs>
+    <pattern id="d1" width="30" height="30" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="#CFCFC9"/>
+      <rect width="15" height="30" fill="#C6C6C0"/>
+    </pattern>
+  </defs>
+  <rect width="480" height="600" fill="url(#d1)" stroke="#141416"/>
+  <text x="240" y="296" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="3" fill="#6E6F6A">RELIQUE</text>
+  <text x="240" y="320" text-anchor="middle" font-family="monospace" font-size="11" letter-spacing="1" fill="#8A8B84">visuel produit · 4:5</text>
+</svg>
