@@ -1,0 +1,33 @@
+framework:
+    workflows:
+        order:
+            type: state_machine
+            audit_trail:
+                enabled: false
+            marking_store:
+                type: method
+                property: etat
+            supports:
+                - App\Entity\Order
+            initial_marking: panier
+            places:
+                - panier
+                - payee
+                - en_preparation
+                - expediee
+                - en_transit
+                - livree   # place déclarée mais jamais atteinte — c'est le principe de la Maison
+            transitions:
+                payer:
+                    from: panier
+                    to: payee
+                preparer:
+                    from: payee
+                    to: en_preparation
+                expedier:
+                    from: en_preparation
+                    to: expediee
+                convoyer:
+                    from: expediee
+                    to: en_transit
+                # Aucune transition ne mène jamais à « livree ». La commande n'arrive pas.

@@ -1,0 +1,46 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% block title %}Commande {{ order.reference }} — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <section style="padding:88px 56px 40px;text-align:center;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#7E8C82;margin-bottom:24px">
+      {% if order.paye %}Paiement confirmé{% else %}Paiement en cours de confirmation{% endif %} · Commande N° {{ order.reference }}
+    </div>
+    <h1 style="margin:0 auto 20px;max-width:900px;font-family:'Archivo',sans-serif;font-weight:800;font-size:60px;line-height:.98;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Nous vous remercions de votre acquisition.</h1>
+    <p style="margin:0 auto;max-width:620px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">
+      {% if order.paye %}
+        Votre paiement de <strong>{{ order.montantEuros|number_format(0, ',', ' ') }}&nbsp;€</strong> a bien été reçu. C'est, pour l'heure, la partie la plus certaine de votre commande. Un e-mail de confirmation vous a été adressé.
+      {% else %}
+        Votre paiement de <strong>{{ order.montantEuros|number_format(0, ',', ' ') }}&nbsp;€</strong> est en cours de confirmation par notre prestataire. Cette page se mettra à jour dès réception — la seule attente qui, elle, sera brève.
+      {% endif %}
+    </p>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="padding:64px 56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px;display:flex;align-items:center;gap:10px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Votre bon de convoyage</div>
+      <div style="border:1px solid #141416;padding:26px;font-family:'IBM Plex Mono',monospace">
+        <div style="display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;border-bottom:1px dashed rgba(20,20,22,.3);padding-bottom:14px;margin-bottom:14px"><span>Réf. {{ order.reference }}</span><span>{{ order.transporteur }}</span></div>
+        <div style="font-size:14px;color:#141416;margin-bottom:8px">État : <span style="color:#7E8C82">{{ order.etat|replace({'_': ' '}) }}</span></div>
+        <div style="font-size:12px;color:#6E6F6A">Date de livraison estimée : à déterminer.</div>
+      </div>
+      <div style="margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Le suivi détaillé arrive prochainement.</div>
+    </div>
+    <div style="padding:64px 56px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Détail</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px">
+        {% for item in order.items %}
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,20,22,.12);gap:12px"><span style="color:#6E6F6A">{{ item.productNom }}{% if item.quantite > 1 %} × {{ item.quantite }}{% endif %}</span><span>{{ (item.ligneTotalCents / 100)|number_format(0, ',', ' ') }}&nbsp;€</span></div>
+        {% endfor %}
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,20,22,.12)"><span style="color:#6E6F6A">Livraison</span><span style="color:#7E8C82">gratuite</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;font-size:16px;font-weight:500"><span>Total réglé</span><span>{{ order.montantEuros|number_format(0, ',', ' ') }}&nbsp;€</span></div>
+      </div>
+      <div style="margin-top:20px;font-size:14px;line-height:1.6;color:#3B3C3D">Livré à : {{ order.livraisonNom }}, {{ order.livraisonLigne1 }}, {{ order.livraisonCp }} {{ order.livraisonVille }}.<br><span style="color:#6E6F6A;font-family:'IBM Plex Mono',monospace;font-size:12px">Date de livraison estimée : à déterminer.</span></div>
+    </div>
+  </section>
+
+  <section style="padding:64px 56px;text-align:center">
+    <a href="{{ path('app_collections') }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase">← Poursuivre la contemplation</a>
+  </section>
+{% endblock %}

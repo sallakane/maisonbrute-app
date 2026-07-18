@@ -21,7 +21,12 @@
 
 {% block body %}
     <div style="position:relative;overflow:hidden">
-        <twig:Nav :cartCount="cart_count is defined ? cart_count : 0" />
+        <twig:Nav />
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div role="status" style="padding:14px 56px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;background:{{ type == 'error' ? '#141416' : '#E1E5E0' }};color:{{ type == 'error' ? '#E8E8E3' : '#141416' }};border-bottom:1px solid rgba(20,20,22,.16)">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
         {% block storefront %}{% endblock %}
         <twig:Footer />
     </div>

@@ -73,7 +73,10 @@
         {% if produit.epuise %}
           <span style="flex:1;min-width:200px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#6E6F6A;background:transparent;padding:20px 30px;border:1px solid rgba(20,20,22,.28)">Épuisé pour toujours</span>
         {% else %}
-          <a href="#" style="flex:1;min-width:200px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:20px 30px;border:1px solid #141416">Confirmer mon acquisition</a>
+          <form method="post" action="{{ path('app_cart_add', { id: produit.id }) }}" style="flex:1;min-width:200px">
+            <input type="hidden" name="_token" value="{{ csrf_token('cart_add' ~ produit.id) }}">
+            <button type="submit" style="width:100%;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:20px 30px;border:1px solid #141416">Confirmer mon acquisition</button>
+          </form>
         {% endif %}
         <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#141416;background:transparent;padding:20px 26px;border:1px solid #141416">Conserver</a>
       </div>

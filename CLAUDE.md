@@ -56,8 +56,25 @@ php bin/phpunit                                   # tests
 ## Ordre de construction (blueprint §10) — v1 = tranche verticale, FR d'abord
 
 1. ✅ Squelette Symfony + Docker (Postgres/Mailpit) + serveur CLI.
-2. ⏳ Tailwind + tokens · EasyAdmin · Security · entités catalogue + CRUD + seed démo.
-3. Front SSR : accueil, catégorie, fiche produit (+ SEO + JSON-LD).
-4. Panier → tunnel → Stripe test → webhook → `Order` + e-mail confirmation.
-5. Workflow commande (`en_transit ⟲`, jamais `livree`) + Scheduler + bon de convoyage + suivi.
+2. ✅ Tailwind + tokens · EasyAdmin · Security · entités catalogue + CRUD + seed démo.
+3. ✅ Front SSR : accueil, collections, catégorie `/c/{slug}`, fiche produit `/p/{slug}` (+ SEO + JSON-LD).
+4. ✅ Panier (session) → tunnel `/commande` → Stripe test → webhook → `Order` + e-mail confirmation.
+5. ⏳ Workflow commande (`en_transit ⟲`, jamais `livree`) + Scheduler + bon de convoyage + suivi.
 6→9. Avis · Journal (CMS SEO) · compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+
+## Paiement (Stripe) — MODE TEST UNIQUEMENT
+
+- Clés dans `.env.local` : `STRIPE_SECRET_KEY` (**sk_test_…**), `STRIPE_PUBLIC_KEY`, `STRIPE_WEBHOOK_SECRET`.
+  Garde-fou : `StripeCheckoutService` refuse toute clé qui ne commence pas par `sk_test_`.
+- Flux : panier → `/commande` (form invité/client + adresse + transporteur) → **Stripe Checkout hébergé**
+  → `success_url` = `/commande/confirmation/{ref}`. Le paiement est acté par le **webhook** `/webhook/stripe`
+  (source de vérité, signature vérifiée, idempotent), qui applique la transition workflow `payer` et envoie l'e-mail.
+- Webhook en local : `stripe listen --forward-to localhost:8000/webhook/stripe` (copier le `whsec_…` affiché dans `.env.local`).
+- Carte de test : `4242 4242 4242 4242`, date future, CVC quelconque.
+- L'`Order` porte l'état workflow (`etat`), le statut de paiement (`StatutPaiement`), les infos Stripe et un snapshot des lignes.
+- Admin : CRUD **Commandes** en lecture seule (`/admin`).
+
+## E-mails / Messenger
+
+- `SendEmailMessage` routé **async** en prod, **sync** en dev+test (`config/packages/messenger.yaml`) → livraison
+  immédiate à Mailpit et tests déterministes, sans worker. **En prod**, lancer `php bin/console messenger:consume async`.

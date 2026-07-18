@@ -1,0 +1,66 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% block title %}Commande — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <div style="display:flex;justify-content:center;gap:0;padding:22px 56px;border-bottom:1px solid rgba(20,20,22,.16);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap">
+    <span style="color:#7E8C82">01 Identification</span><span style="color:#6E6F6A;padding:0 12px">→</span>
+    <span style="color:#7E8C82">02 Adresse</span><span style="color:#6E6F6A;padding:0 12px">→</span>
+    <span style="color:#7E8C82">03 Transporteur</span><span style="color:#6E6F6A;padding:0 12px">→</span>
+    <span style="color:#141416;border-bottom:2px solid #141416;padding-bottom:2px">04 Paiement</span>
+  </div>
+
+  {{ form_start(form, {attr: {style: 'display:block'}}) }}
+  <section style="display:grid;grid-template-columns:1fr 400px;gap:56px;padding:52px 56px 96px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px;font-family:'IBM Plex Mono',monospace">
+      {% set lbl = 'font-family:\'IBM Plex Mono\',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6F6A;margin-bottom:8px;display:block' %}
+      {% set fld = 'width:100%;border:1px solid rgba(20,20,22,.3);background:#EFEFEB;padding:14px 15px;font-family:\'IBM Plex Mono\',monospace;font-size:13px;color:#141416' %}
+
+      <div style="border:1px solid rgba(20,20,22,.18);padding:26px">
+        <div style="{{ lbl }};margin-bottom:16px">01 · Identification</div>
+        {{ form_label(form.email, null, {label_attr: {style: lbl}}) }}
+        {{ form_widget(form.email, {attr: {style: fld, placeholder: 'vous@exemple.fr'}}) }}
+        <div style="color:#141416;font-size:11px;margin-top:6px">{{ form_errors(form.email) }}</div>
+      </div>
+
+      <div style="border:1px solid rgba(20,20,22,.18);padding:26px">
+        <div style="{{ lbl }};margin-bottom:16px">02 · Adresse de livraison <span style="color:#7E8C82">(jamais utilisée)</span></div>
+        <div style="margin-bottom:14px">{{ form_label(form.nom, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.nom, {attr: {style: fld}}) }}<div style="font-size:11px;margin-top:6px">{{ form_errors(form.nom) }}</div></div>
+        <div style="margin-bottom:14px">{{ form_label(form.ligne1, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.ligne1, {attr: {style: fld}}) }}<div style="font-size:11px;margin-top:6px">{{ form_errors(form.ligne1) }}</div></div>
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:12px;margin-bottom:14px">
+          <div>{{ form_label(form.cp, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.cp, {attr: {style: fld}}) }}<div style="font-size:11px;margin-top:6px">{{ form_errors(form.cp) }}</div></div>
+          <div>{{ form_label(form.ville, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.ville, {attr: {style: fld}}) }}<div style="font-size:11px;margin-top:6px">{{ form_errors(form.ville) }}</div></div>
+        </div>
+        <div>{{ form_label(form.pays, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.pays, {attr: {style: fld}}) }}</div>
+      </div>
+
+      <div style="border:1px solid rgba(20,20,22,.18);padding:26px">
+        <div style="{{ lbl }};margin-bottom:16px">03 · Mode de convoyage</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          {% for choice in form.transporteur %}
+            <label style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid rgba(20,20,22,.2);cursor:pointer;gap:12px">
+              <span style="display:flex;align-items:center;gap:12px;font-size:14px">{{ form_widget(choice) }}{{ choice.vars.label }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#7E8C82">Gratuit</span>
+            </label>
+          {% endfor %}
+        </div>
+        <div style="font-size:11px;margin-top:8px">{{ form_errors(form.transporteur) }}</div>
+      </div>
+    </div>
+
+    <aside style="border:1px solid #141416;padding:34px 32px;position:sticky;top:24px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Votre commande</div>
+      {% for item in items %}
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(20,20,22,.12);gap:12px"><span>{{ item.product.nom }}{% if item.qty > 1 %} × {{ item.qty }}{% endif %}</span><span style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">{{ (item.ligneCents / 100)|number_format(0, ',', ' ') }}&nbsp;€</span></div>
+      {% endfor %}
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:14px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0"><span style="color:#6E6F6A">Livraison</span><span style="color:#7E8C82">gratuite</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid rgba(20,20,22,.2);margin-top:8px;font-size:17px;font-weight:500"><span>Total</span><span>{{ (total_cents / 100)|number_format(0, ',', ' ') }}&nbsp;€</span></div>
+      </div>
+      <button type="submit" {{ stripe_ready ? '' : 'disabled' }} style="display:block;width:100%;text-align:center;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:20px;border:1px solid #141416;cursor:{{ stripe_ready ? 'pointer' : 'not-allowed' }};opacity:{{ stripe_ready ? '1' : '.55' }}">Payer {{ (total_cents / 100)|number_format(0, ',', ' ') }}&nbsp;€</button>
+      <p style="margin:16px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6;color:#6E6F6A;text-align:center">Paiement <strong>en mode test</strong> (carte 4242 4242 4242 4242). Aucun débit réel. En confirmant, vous acceptez l'éventualité d'une attente sans fin.</p>
+      {% if not stripe_ready %}<p style="margin:12px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#141416;text-align:center">Paiement indisponible : clés Stripe de test non configurées.</p>{% endif %}
+    </aside>
+  </section>
+  {{ form_end(form) }}
+{% endblock %}

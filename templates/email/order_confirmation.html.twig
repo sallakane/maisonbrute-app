@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;background:#E8E8E3;font-family:Georgia,'Times New Roman',serif;color:#141416">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#E8E8E3">
+    <tr><td align="center" style="padding:32px 16px">
+      <table role="presentation" width="620" cellpadding="0" cellspacing="0" style="max-width:620px;width:100%;background:#E8E8E3;border:1px solid #141416">
+        <tr><td style="background:#141416;color:#E8E8E3;text-align:center;padding:26px;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px;text-transform:uppercase">Maison Brute</td></tr>
+        <tr><td style="padding:40px 44px">
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.65">Cher·e {{ order.livraisonNom }},</p>
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#2C2D2E">Nous vous confirmons la bonne réception de votre paiement de <strong>{{ order.montantEuros|number_format(0, ',', ' ') }}&nbsp;€</strong>. Votre commande <strong>N° {{ order.reference }}</strong> est désormais entre nos mains, et le restera aussi longtemps que nécessaire.</p>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px">
+            {% for item in order.items %}
+              <tr><td style="padding:8px 0;border-bottom:1px solid rgba(20,20,22,.15);color:#2C2D2E">{{ item.productNom }}{% if item.quantite > 1 %} × {{ item.quantite }}{% endif %}</td><td align="right" style="padding:8px 0;border-bottom:1px solid rgba(20,20,22,.15)">{{ (item.ligneTotalCents / 100)|number_format(0, ',', ' ') }} €</td></tr>
+            {% endfor %}
+            <tr><td style="padding:8px 0;color:#7E8C82">Livraison</td><td align="right" style="padding:8px 0;color:#7E8C82">gratuite, indéfiniment</td></tr>
+            <tr><td style="padding:12px 0;font-weight:bold">Total réglé</td><td align="right" style="padding:12px 0;font-weight:bold">{{ order.montantEuros|number_format(0, ',', ' ') }} €</td></tr>
+          </table>
+
+          <p style="margin:0 0 28px;font-size:16px;line-height:1.65;color:#2C2D2E">Vous pourrez suivre son cheminement à tout moment. Nous vous déconseillons toutefois de le faire trop souvent.</p>
+          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.6;color:#6E6F6A;text-align:center">Maison Brute · Objets d'exception, délais d'exception.<br>Vous recevez cet e-mail ; le colis, lui, viendra peut-être plus tard.<br><br>Boutique satirique et fictive — paiement en mode test, aucun bien n'est réellement expédié.</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
