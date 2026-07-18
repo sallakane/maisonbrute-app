@@ -67,6 +67,27 @@ class StripeCheckoutService
         return $session;
     }
 
+    /**
+     * Réconciliation serveur : re-interroge Stripe pour l'état réel du paiement d'une commande.
+     * Autoritatif (on n'utilise pas le retour navigateur). Renvoie le payment_intent si payé, sinon null.
+     */
+    public function fetchPaidPaymentIntent(Order $order): ?string
+    {
+        $sessionId = $order->getStripeSessionId();
+        if (!$this->isConfigured() || $sessionId === null) {
+            return null;
+        }
+
+        $client = new StripeClient($this->secretKey);
+        $session = $client->checkout->sessions->retrieve($sessionId);
+
+        if ($session->payment_status !== 'paid') {
+            return null;
+        }
+
+        return \is_string($session->payment_intent) ? $session->payment_intent : 'paid';
+    }
+
     private function assertTestKey(): void
     {
         if (!$this->isConfigured()) {

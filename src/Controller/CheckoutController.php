@@ -7,6 +7,7 @@ use App\Checkout\CheckoutData;
 use App\Checkout\OrderFactory;
 use App\Entity\User;
 use App\Form\CheckoutType;
+use App\Payment\OrderPaymentFinalizer;
 use App\Payment\StripeCheckoutService;
 use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,14 +66,28 @@ class CheckoutController extends AbstractController
     }
 
     #[Route('/commande/confirmation/{reference}', name: 'app_checkout_confirmation', methods: ['GET'])]
-    public function confirmation(string $reference, OrderRepository $orders, CartService $cart): Response
-    {
+    public function confirmation(
+        string $reference,
+        OrderRepository $orders,
+        CartService $cart,
+        StripeCheckoutService $stripe,
+        OrderPaymentFinalizer $finalizer,
+    ): Response {
         $order = $orders->findOneByReference($reference);
         if ($order === null) {
             throw new NotFoundHttpException('Commande introuvable.');
         }
 
-        // Le retour navigateur vide le panier, mais ne fait pas foi pour le paiement (c'est le webhook).
+        // Réconciliation serveur : le webhook reste la source de vérité, mais si l'événement n'est pas
+        // encore arrivé (ou pas configuré en local), on re-interroge Stripe directement (autoritatif).
+        if (!$order->isPaye()) {
+            $paymentIntent = $stripe->fetchPaidPaymentIntent($order);
+            if ($paymentIntent !== null) {
+                $finalizer->markPaid($order, $paymentIntent === 'paid' ? null : $paymentIntent);
+            }
+        }
+
+        // Le retour navigateur vide le panier ; il ne fait pas foi pour le paiement.
         $cart->clear();
 
         return $this->render('checkout/confirmation.html.twig', [
