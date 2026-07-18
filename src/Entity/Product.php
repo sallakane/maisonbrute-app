@@ -73,10 +73,15 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private \DateTimeImmutable $createdAt;
 
+    /** @var Collection<int, Review> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class)]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -324,5 +329,11 @@ class Product
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /** @return Collection<int, Review> */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
     }
 }

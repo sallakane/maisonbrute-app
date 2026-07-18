@@ -60,7 +60,16 @@ php bin/phpunit                                   # tests
 3. ✅ Front SSR : accueil, collections, catégorie `/c/{slug}`, fiche produit `/p/{slug}` (+ SEO + JSON-LD).
 4. ✅ Panier (session) → tunnel `/commande` → Stripe test → webhook → `Order` + e-mail confirmation.
 5. ✅ Workflow (`en_transit ⟲`, jamais `livree`) + Scheduler tracking + bon de convoyage + page `/suivi`.
-6→9. Avis · Journal (CMS SEO) · compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+6. ✅ Avis : dépôt (`/avis` + fiche produit) + modération EasyAdmin + affichage + `AggregateRating` JSON-LD.
+7→9. Journal (CMS SEO) · compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+
+## Avis (Review)
+
+- Entité `Review` (product nullable, auteur, attente, note 1-5, texte, `modere`, createdAt).
+- Dépôt : page **`/avis`** (avis général) et **fiche produit** (`POST /p/{slug}/avis`). Créés **non modérés** (`modere=false`) → invisibles jusqu'à validation.
+- Modération : CRUD EasyAdmin « Avis » avec **switch `Publié`** basculable depuis la liste.
+- Affichage : mur `/avis` + agrégat global ; section avis + formulaire sur la fiche produit.
+- **`AggregateRating`** injecté dans le JSON-LD produit dès qu'il existe ≥1 avis modéré (ratingValue = moyenne, reviewCount).
 
 ## Suivi de commande (le colis qui n'arrive jamais)
 

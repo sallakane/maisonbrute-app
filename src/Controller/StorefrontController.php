@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Review;
+use App\Form\ReviewType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -56,7 +59,7 @@ class StorefrontController extends AbstractController
     }
 
     #[Route('/p/{slug}', name: 'app_product', methods: ['GET'])]
-    public function product(string $slug, ProductRepository $products): Response
+    public function product(string $slug, ProductRepository $products, ReviewRepository $reviews): Response
     {
         $product = $products->findOnePublishedBySlug($slug);
         if ($product === null) {
@@ -68,9 +71,16 @@ class StorefrontController extends AbstractController
             static fn ($p) => $p->getId() !== $product->getId(),
         ));
 
+        $reviewForm = $this->createForm(ReviewType::class, new Review(), [
+            'action' => $this->generateUrl('app_product_review', ['slug' => $slug]),
+        ]);
+
         return $this->render('storefront/product.html.twig', [
             'produit' => $product,
             'similaires' => \array_slice($similaires, 0, 4),
+            'avis' => $reviews->findModeresParProduit($product),
+            'agg' => $reviews->aggregatProduit($product),
+            'review_form' => $reviewForm,
         ]);
     }
 }

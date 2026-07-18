@@ -32,6 +32,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Commerce');
         yield MenuItem::linkTo(OrderCrudController::class, 'Commandes', 'fa fa-receipt');
+        yield MenuItem::linkTo(ReviewCrudController::class, 'Avis', 'fa fa-star');
 
         yield MenuItem::section('Catalogue');
         yield MenuItem::linkTo(ProductCrudController::class, 'Produits', 'fa fa-box-archive');

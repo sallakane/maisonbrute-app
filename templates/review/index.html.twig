@@ -1,0 +1,57 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Les témoignages de nos clients : ils n’ont, pour la plupart, jamais reçu leur commande. Leur fidélité n’en est que plus remarquable.' %}
+{% set canonical = url('app_avis') %}
+
+{% block title %}Avis & témoignages — Maison Brute{% endblock %}
+
+{% macro etoiles(note) %}
+  <span style="letter-spacing:.16em">{% for i in 1..5 %}<span style="color:{{ i <= note ? '#7E8C82' : 'rgba(20,20,22,.25)' }}">★</span>{% endfor %}</span>
+{% endmacro %}
+
+{% block storefront %}
+  {% import _self as ui %}
+  <section style="padding:64px 56px 48px;border-bottom:1px solid rgba(20,20,22,.16);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:18px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Avis &amp; témoignages</div>
+      <h1 style="margin:0 0 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:60px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Ils patientent, et ils recommandent.</h1>
+      <p style="margin:0;max-width:560px;font-size:16px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">Nos clients n'ont, pour la plupart, jamais reçu leur commande. Leur fidélité n'en est que plus remarquable.</p>
+    </div>
+    <div style="text-align:right;border-left:1px solid rgba(20,20,22,.16);padding-left:40px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:64px;line-height:1;color:#141416">{{ agg.count > 0 ? (agg.moyenne|number_format(1, ',', ' ')) : '—' }}</div>
+      <div style="color:#7E8C82;letter-spacing:.2em;font-size:18px;margin:6px 0">{{ ui.etoiles(agg.moyenne|round) }}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">{{ agg.count }} avis · 0 réception</div>
+    </div>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 380px;gap:56px;padding:56px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      {% for avis in avis %}
+        <div style="border:1px solid rgba(20,20,22,.18);padding:30px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;gap:16px">
+            <div style="color:#7E8C82;letter-spacing:.2em;font-size:16px">{{ ui.etoiles(avis.note) }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A;text-align:right">{{ avis.auteur }}{% if avis.attente %} · {{ avis.attente }}{% endif %}</div>
+          </div>
+          <p style="margin:0;font-size:16px;line-height:1.65;color:#2C2D2E">{{ avis.texte }}</p>
+          {% if avis.product %}<div style="margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82"><a href="{{ path('app_product', { slug: avis.product.slug }) }}">{{ avis.product.nom }}</a></div>{% endif %}
+        </div>
+      {% else %}
+        <p style="font-size:16px;color:#3B3C3D">Aucun avis publié pour l'instant. La patience est en cours de modération.</p>
+      {% endfor %}
+    </div>
+
+    <aside style="border:1px solid #141416;padding:32px 30px;position:sticky;top:24px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Déposer un avis</div>
+      {{ form_start(form) }}
+      {% set lbl = 'font-family:\'IBM Plex Mono\',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6E6F6A;margin-bottom:8px;display:block' %}
+      {% set fld = 'width:100%;border:1px solid rgba(20,20,22,.3);background:#EFEFEB;padding:12px 14px;font-family:\'IBM Plex Mono\',monospace;font-size:13px' %}
+      <div style="margin-bottom:16px">{{ form_label(form.auteur, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.auteur, {attr: {style: fld}}) }}<div style="font-size:11px;color:#141416;margin-top:6px">{{ form_errors(form.auteur) }}</div></div>
+      <div style="margin-bottom:16px">{{ form_label(form.note, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.note, {attr: {style: fld}}) }}</div>
+      <div style="margin-bottom:16px">{{ form_label(form.attente, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.attente, {attr: {style: fld}}) }}</div>
+      <div style="margin-bottom:16px">{{ form_label(form.texte, null, {label_attr: {style: lbl}}) }}{{ form_widget(form.texte, {attr: {style: fld ~ ';resize:vertical;font-family:\'IBM Plex Sans\',sans-serif'}}) }}<div style="font-size:11px;color:#141416;margin-top:6px">{{ form_errors(form.texte) }}</div></div>
+      <button type="submit" style="width:100%;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px;border:1px solid #141416;cursor:pointer">Publier mon avis</button>
+      {{ form_end(form) }}
+      <p style="margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.6;color:#6E6F6A;text-align:center">Les avis sont modérés avec la même diligence que nos livraisons.</p>
+    </aside>
+  </section>
+{% endblock %}

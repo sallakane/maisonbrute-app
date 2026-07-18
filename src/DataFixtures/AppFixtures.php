@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Maison;
 use App\Entity\Product;
 use App\Entity\ProductImage;
+use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -100,6 +101,7 @@ class AppFixtures extends Fixture
         ];
 
         $pos = 0;
+        $produits = [];
         foreach ($data as $row) {
             $product = (new Product())
                 ->setNom($row['nom'])
@@ -127,7 +129,35 @@ class AppFixtures extends Fixture
             $product->addImage($image);
 
             $manager->persist($product);
+            $produits[$row['slug']] = $product;
             ++$pos;
+        }
+
+        // --- Avis (modérés, publiés) — le mur satirique ---
+        $avis = [
+            ['auteur' => 'Hélène D.', 'attente' => "4 ans d'attente", 'note' => 5, 'produit' => null,
+                'texte' => "Commandé en 2022. Toujours pas reçu. Le service client est admirable de constance : il me répond chaque année, à la même date, le même message rassurant. Je recommande."],
+            ['auteur' => 'Marc-Antoine V.', 'attente' => 'attente sereine', 'note' => 5, 'produit' => 'le-vide-contenu',
+                'texte' => "Au début, on guette le facteur. Puis on comprend. L'objet n'arrivera pas, et c'est très bien ainsi : il ne pourra jamais me décevoir. Cinq étoiles."],
+            ['auteur' => 'Sabine R.', 'attente' => "6 ans d'attente", 'note' => 4, 'produit' => 'le-vide-contenu',
+                'texte' => "Une étoile en moins car le bon de convoyage est arrivé légèrement froissé. Le colis, lui, n'est pas arrivé du tout — mais cela, je ne saurais le leur reprocher."],
+            ['auteur' => 'Anonyme', 'attente' => 'client depuis toujours', 'note' => 5, 'produit' => 'lumiere-rationnee',
+                'texte' => "Je ne me souviens plus de ce que j'ai commandé, ni quand. Mais chaque matin, l'espoir est intact. C'est un abonnement au désir. Merci Maison Brute."],
+            ['auteur' => 'Th. Lemaître', 'attente' => "2 ans d'attente", 'note' => 5, 'produit' => 'objet-differe',
+                'texte' => "L'Objet Différé porte admirablement son nom. Je l'ai différé, il me diffère. Nous sommes quittes, et ravis."],
+        ];
+
+        foreach ($avis as $a) {
+            $review = (new Review())
+                ->setAuteur($a['auteur'])
+                ->setAttente($a['attente'])
+                ->setNote($a['note'])
+                ->setTexte($a['texte'])
+                ->setModere(true);
+            if ($a['produit'] !== null && isset($produits[$a['produit']])) {
+                $review->setProduct($produits[$a['produit']]);
+            }
+            $manager->persist($review);
         }
 
         $manager->flush();
