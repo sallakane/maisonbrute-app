@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{# Chaque page vitrine peut définir : seo_title, seo_description, canonical, og (block) #}
+
+{% block head_meta %}
+    {% if seo_description is defined and seo_description %}
+        <meta name="description" content="{{ seo_description }}">
+    {% endif %}
+    {% if canonical is defined and canonical %}
+        <link rel="canonical" href="{{ canonical }}">
+    {% endif %}
+    <meta property="og:site_name" content="Maison Brute">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{{ block('title') }}">
+    {% if seo_description is defined and seo_description %}
+        <meta property="og:description" content="{{ seo_description }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    {% block head_extra %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div style="position:relative;overflow:hidden">
+        <twig:Nav :cartCount="cart_count is defined ? cart_count : 0" />
+        {% block storefront %}{% endblock %}
+        <twig:Footer />
+    </div>
+{% endblock %}

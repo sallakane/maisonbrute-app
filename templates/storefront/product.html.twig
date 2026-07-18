@@ -1,0 +1,112 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set image = produit.imagePrincipale %}
+{% set categorie = produit.categories|first %}
+{% set seo_description = produit.seoDescription ?? produit.descriptionMarketing|striptags|slice(0, 160) %}
+{% set canonical = url('app_product', { slug: produit.slug }) %}
+
+{% block title %}{{ produit.seoTitle ?? (produit.nom ~ ' — Maison Brute') }}{% endblock %}
+{% block og_type %}product{% endblock %}
+
+{% block head_extra %}
+  {% if image %}<meta property="og:image" content="{{ absolute_url(image.chemin) }}">{% endif %}
+  <script type="application/ld+json">
+  {{ {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    'name': produit.nom,
+    'sku': produit.sku,
+    'description': (produit.descriptionMarketing ?? produit.nom)|striptags,
+    'image': image ? [absolute_url(image.chemin)] : [],
+    'brand': produit.maison ? { '@type': 'Brand', 'name': produit.maison.nom } : null,
+    'offers': {
+      '@type': 'Offer',
+      'url': canonical,
+      'priceCurrency': produit.devise,
+      'price': produit.prixEuros,
+      'availability': produit.epuise ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock'
+    }
+  }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}
+  </script>
+{% endblock %}
+
+{% block storefront %}
+  <section style="display:grid;grid-template-columns:1.05fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="border-right:1px solid rgba(20,20,22,.16);display:flex;flex-direction:column">
+      <div style="flex:1;min-height:640px;position:relative;overflow:hidden;background:repeating-linear-gradient(45deg,#CFCFC9 0 16px,#C6C6C0 16px 32px);display:flex;align-items:center;justify-content:center">
+        {% if produit.badge %}<span style="position:absolute;top:20px;left:20px;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#141416;color:#E8E8E3;padding:5px 10px">{{ produit.badge }}</span>{% endif %}
+        {% if image %}
+          <img src="{{ image.chemin }}" alt="{{ image.alt ?? produit.nom }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        {% else %}
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8A8B84">Relique — visuel produit à intégrer · 4:5</span>
+        {% endif %}
+      </div>
+      {% if produit.images|length > 1 %}
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(20,20,22,.16)">
+          {% for img in produit.images|slice(0, 4) %}
+            <div style="aspect-ratio:1;position:relative;overflow:hidden;border-right:1px solid rgba(20,20,22,.16)">
+              <img src="{{ img.chemin }}" alt="{{ img.alt ?? produit.nom }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div style="padding:56px 56px 64px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px">
+        {% if categorie %}<a href="{{ path('app_category', { slug: categorie.slug }) }}">{{ categorie.nom }}</a> / {% endif %}<span style="color:#141416">{{ produit.nom }}</span>
+      </div>
+      <h1 style="margin:0 0 8px;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">{{ produit.nom }}</h1>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;margin-bottom:28px">Réf. {{ produit.sku }}{% if produit.maison %} · {{ produit.maison.nom }}{% endif %}</div>
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:30px;flex-wrap:wrap">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:500;color:#141416">{{ produit.prixEuros|number_format(0, ',', ' ') }}&nbsp;€</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82">— dont 0 € de frais de livraison, jamais engagés</span>
+      </div>
+      {% if produit.descriptionMarketing %}
+        <p style="margin:0 0 22px;font-size:17px;line-height:1.7;color:#2C2D2E;text-wrap:pretty">{{ produit.descriptionMarketing }}</p>
+      {% endif %}
+      {% if produit.descriptionVraie %}
+        <p style="margin:0 0 34px;font-size:15px;line-height:1.7;color:#6E6F6A;text-wrap:pretty">{{ produit.descriptionVraie }}</p>
+      {% endif %}
+
+      <div style="display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap">
+        {% if produit.epuise %}
+          <span style="flex:1;min-width:200px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#6E6F6A;background:transparent;padding:20px 30px;border:1px solid rgba(20,20,22,.28)">Épuisé pour toujours</span>
+        {% else %}
+          <a href="#" style="flex:1;min-width:200px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:20px 30px;border:1px solid #141416">Confirmer mon acquisition</a>
+        {% endif %}
+        <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#141416;background:transparent;padding:20px 26px;border:1px solid #141416">Conserver</a>
+      </div>
+      {% if produit.stockAffiche %}
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7E8C82">● {{ produit.stockAffiche }}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="padding:72px 56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px">Le détail</div>
+      <dl style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#141416">
+        <div style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Référence</dt><dd style="margin:0;text-align:right">{{ produit.sku }}</dd></div>
+        {% if produit.maison %}<div style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Provenance</dt><dd style="margin:0;text-align:right">{{ produit.maison.nom }}</dd></div>{% endif %}
+        {% if categorie %}<div style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(20,20,22,.12)"><dt style="color:#6E6F6A">Collection</dt><dd style="margin:0;text-align:right">{{ categorie.nom }}</dd></div>{% endif %}
+        <div style="display:flex;justify-content:space-between;gap:20px;padding:14px 0"><dt style="color:#6E6F6A">Délai d'acheminement</dt><dd style="margin:0;text-align:right;color:#7E8C82">indéterminé</dd></div>
+      </dl>
+    </div>
+    <div style="padding:72px 56px;background:#E1E5E0;display:flex;flex-direction:column;justify-content:center">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:30px;line-height:1.3;color:#141416;text-wrap:pretty">« Posséder un objet de la Maison Brute, c'est accepter que le désir n'a jamais eu besoin de son objet pour être comblé. »</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6E6F6A;margin-top:24px">— Le Journal, Maison Brute</div>
+    </div>
+  </section>
+
+  {% if similaires is not empty %}
+    <section style="padding:80px 56px 96px">
+      <h2 style="margin:0 0 40px;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.02em;color:#141416">On ne les recevra pas non plus.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:36px">
+        {% for autre in similaires %}
+          <twig:ProductCard :product="autre" />
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

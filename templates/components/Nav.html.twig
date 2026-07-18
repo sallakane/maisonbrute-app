@@ -1,0 +1,20 @@
+{% props cartCount = 0 %}
+<div style="font-family:'IBM Plex Sans',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 56px;background:#141416;color:#9A9B94;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;flex-wrap:wrap;gap:8px">
+    <span style="display:flex;align-items:center;gap:10px"><span style="width:6px;height:6px;background:#7E8C82;display:inline-block"></span>Livraison mondiale — délai indéterminé</span>
+    <span style="color:#7E8C82">Le service client répond en moyenne sous 3 ans</span>
+    <span>FR · € · MMXXV</span>
+  </div>
+  <header style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:26px 56px;border-bottom:1px solid rgba(20,20,22,.16);background:#E8E8E3">
+    <nav style="display:flex;gap:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase">
+      <a href="{{ path('app_collections') }}" style="color:#141416">Collections</a>
+      <a href="#" style="color:#141416">Le Journal</a>
+      <a href="#" style="color:#141416">Le Suivi</a>
+    </nav>
+    <a href="{{ path('app_home') }}" style="justify-self:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;line-height:1;letter-spacing:-.045em;text-transform:uppercase;color:#141416">Maison&nbsp;Brute</a>
+    <nav style="justify-self:end;display:flex;gap:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase">
+      <a href="#" style="color:#141416">Compte</a>
+      <a href="#" style="color:#141416">Panier&nbsp;({{ cartCount }})</a>
+    </nav>
+  </header>
+</div>

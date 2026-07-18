@@ -1,0 +1,29 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Les collections de la Maison Brute : des rayons entiers d’objets choisis pour leur inaccessibilité.' %}
+{% set canonical = url('app_collections') %}
+
+{% block title %}Collections — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <section style="padding:84px 56px 40px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Nos collections</div>
+    <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;text-transform:uppercase;color:#141416">Des rayons, pas des promesses.</h1>
+  </section>
+
+  <section style="padding:24px 56px 96px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px">
+      {% for category in categories %}
+        <a href="{{ path('app_category', { slug: category.slug }) }}" style="display:block;border:1px solid rgba(20,20,22,.2);padding:34px 32px;background:#E1E5E0;text-decoration:none">
+          <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.02em;color:#141416;margin-bottom:12px">{{ category.nom }}</div>
+          {% if category.description %}
+            <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#3B3C3D">{{ category.description }}</p>
+          {% endif %}
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7E8C82">Explorer →</span>
+        </a>
+      {% else %}
+        <p style="font-size:16px;color:#3B3C3D">Aucune collection pour l’instant.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

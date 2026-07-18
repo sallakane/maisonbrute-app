@@ -1,0 +1,29 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = category.seoDescription ?? category.description ?? ('Collection ' ~ category.nom ~ ' — Maison Brute.') %}
+{% set canonical = url('app_category', { slug: category.slug }) %}
+
+{% block title %}{{ category.seoTitle ?? (category.nom ~ ' — Maison Brute') }}{% endblock %}
+
+{% block storefront %}
+  <section style="padding:84px 56px 40px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px;display:flex;align-items:center;gap:12px">
+      <a href="{{ path('app_collections') }}" style="color:#6E6F6A">Collections</a><span style="color:#7E8C82">/</span>{{ category.nom }}
+    </div>
+    <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;text-transform:uppercase;color:#141416">{{ category.nom }}</h1>
+    {% if category.description %}
+      <p style="margin:22px 0 0;max-width:640px;font-size:17px;line-height:1.65;color:#3B3C3D">{{ category.description }}</p>
+    {% endif %}
+    <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7E8C82">{{ produits|length }} pièce{{ produits|length > 1 ? 's' : '' }} · disponibilité conjecturale</div>
+  </section>
+
+  <section style="padding:24px 56px 96px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:36px">
+      {% for produit in produits %}
+        <twig:ProductCard :product="produit" />
+      {% else %}
+        <p style="font-size:16px;color:#3B3C3D">Aucun objet dans cette collection pour l’instant. Ils sont sans doute en transit.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

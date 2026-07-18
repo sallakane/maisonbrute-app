@@ -1,0 +1,50 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Maison Brute — des objets de luxe si rares que la livraison relève de la conjecture. Commander est un engagement ; recevoir, une hypothèse.' %}
+{% set canonical = url('app_home') %}
+
+{% block title %}Maison Brute — Objets rares, livraison conjecturale{% endblock %}
+
+{% block storefront %}
+  {% if objet_du_mois %}
+    <section style="padding:84px 56px 92px;display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#6E6F6A;display:flex;align-items:center;gap:12px">
+        <span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Objet du mois · Réf. {{ objet_du_mois.sku }}
+      </div>
+      <div style="width:480px;max-width:100%;aspect-ratio:4/5;margin:38px 0 8px;border:1px solid #141416;position:relative;overflow:hidden;background:repeating-linear-gradient(45deg,#CFCFC9 0 15px,#C6C6C0 15px 30px)">
+        {% if objet_du_mois.imagePrincipale %}
+          <img src="{{ objet_du_mois.imagePrincipale.chemin }}" alt="{{ objet_du_mois.imagePrincipale.alt ?? objet_du_mois.nom }}"
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        {% endif %}
+      </div>
+      <h1 style="margin:26px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:92px;line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:#141416;max-width:12ch">{{ objet_du_mois.nom }}</h1>
+      {% if objet_du_mois.descriptionMarketing %}
+        <p style="margin:26px 0 0;max-width:600px;font-size:17px;line-height:1.65;color:#3B3C3D;text-wrap:pretty">{{ objet_du_mois.descriptionMarketing }}</p>
+      {% endif %}
+      <div style="margin:30px 0 0;font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.02em;color:#141416">{{ objet_du_mois.prixEuros|number_format(0, ',', ' ') }}&nbsp;€</div>
+      <div style="margin:34px 0 0;display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+        <a href="{{ path('app_product', { slug: objet_du_mois.slug }) }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#E8E8E3;background:#141416;padding:16px 30px;border:1px solid #141416">Confirmer mon acquisition</a>
+        <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#141416;background:transparent;padding:16px 30px;border:1px solid #141416">Consulter le bon de convoyage</a>
+      </div>
+    </section>
+  {% endif %}
+
+  <section style="padding:78px 56px;background:#E1E5E0;border-top:1px solid rgba(20,20,22,.16);border-bottom:1px solid rgba(20,20,22,.16)">
+    <p style="margin:0 auto;max-width:1000px;text-align:center;font-family:'Archivo',sans-serif;font-weight:500;font-size:38px;line-height:1.16;letter-spacing:-.015em;color:#141416;text-wrap:balance">Nous concevons des objets si rares que la planète elle-même peine à les acheminer. La commande est un engagement. La livraison, une <span style="color:#7E8C82">conjecture</span>.</p>
+  </section>
+
+  <section style="padding:92px 56px 96px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:24px;flex-wrap:wrap">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Rayons vedettes</div>
+        <h2 style="margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:34px;line-height:1.05;letter-spacing:-.025em;color:#141416">Pièces choisies pour leur inaccessibilité.</h2>
+      </div>
+      <a href="{{ path('app_collections') }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap">Voir la collection →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:36px">
+      {% for produit in vedettes %}
+        <twig:ProductCard :product="produit" />
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

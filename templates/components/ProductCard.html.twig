@@ -1,0 +1,21 @@
+{% props product %}
+{% set epuise = product.epuise %}
+{% set image = product.imagePrincipale %}
+{% set meta = (product.categories|first ? product.categories|first.nom ~ ' · ' : '') ~ 'Réf. ' ~ product.sku %}
+<a href="{{ path('app_product', { slug: product.slug }) }}" style="display:flex;flex-direction:column;gap:16px;font-family:'IBM Plex Sans',sans-serif;text-decoration:none">
+  <div style="position:relative;aspect-ratio:4/5;border:1px solid rgba(20,20,22,.28);background:repeating-linear-gradient(45deg,{{ epuise ? '#CBCBC5 0 14px,#C2C2BC 14px 28px' : '#CFCFC9 0 14px,#C6C6C0 14px 28px' }});display:flex;align-items:center;justify-content:center;overflow:hidden">
+    {% if product.badge %}
+      <span style="position:absolute;top:12px;left:12px;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:{{ epuise ? '#7E8C82' : '#141416' }};color:#E8E8E3;padding:4px 8px">{{ product.badge }}</span>
+    {% endif %}
+    {% if image %}
+      <img src="{{ image.chemin }}" alt="{{ image.alt ?? product.nom }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    {% else %}
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8B84">Relique · 4:5</span>
+    {% endif %}
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+    <h3 style="margin:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:{{ epuise ? '#6E6F6A' : '#141416' }}">{{ product.nom }}</h3>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:{{ epuise ? '#7E8C82' : '#141416' }};{{ epuise ? 'text-decoration:line-through;' : '' }}white-space:nowrap">{{ product.prixEuros|number_format(0, ',', ' ') }}&nbsp;€</span>
+  </div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:{{ epuise ? '#7E8C82' : '#6E6F6A' }}">{{ epuise ? 'Indisponible · Réf. ' ~ product.sku : meta }}</div>
+</a>

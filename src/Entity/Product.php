@@ -91,6 +91,19 @@ class Product
         return $this->prixCents / 100;
     }
 
+    /** Objet « épuisé » (narratif) — dérivé du stock affiché. Reste en catalogue, invendable. */
+    public function isEpuise(): bool
+    {
+        return $this->stockAffiche !== null
+            && str_contains(mb_strtolower($this->stockAffiche), 'épuisé');
+    }
+
+    /** Première image (ordonnée par position) ou null. */
+    public function getImagePrincipale(): ?ProductImage
+    {
+        return $this->images->first() ?: null;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
