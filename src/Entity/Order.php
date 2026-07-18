@@ -79,9 +79,15 @@ class Order
     #[ORM\OneToMany(mappedBy: 'orderRef', targetEntity: OrderItem::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $items;
 
+    /** @var Collection<int, TrackingEvent> */
+    #[ORM\OneToMany(mappedBy: 'orderRef', targetEntity: TrackingEvent::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'ASC', 'id' => 'ASC'])]
+    private Collection $trackingEvents;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->trackingEvents = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -337,5 +343,37 @@ class Order
         }
 
         return $this;
+    }
+
+    public function isEnTransit(): bool
+    {
+        return $this->etat === 'en_transit';
+    }
+
+    /** Nombre de jours écoulés depuis la commande (l'attente, quantifiée). */
+    public function getJoursAttente(): int
+    {
+        return (int) $this->createdAt->diff(new \DateTimeImmutable())->days;
+    }
+
+    /** @return Collection<int, TrackingEvent> */
+    public function getTrackingEvents(): Collection
+    {
+        return $this->trackingEvents;
+    }
+
+    public function addTrackingEvent(TrackingEvent $event): static
+    {
+        if (!$this->trackingEvents->contains($event)) {
+            $this->trackingEvents->add($event);
+            $event->setOrderRef($this);
+        }
+
+        return $this;
+    }
+
+    public function getDernierEvent(): ?TrackingEvent
+    {
+        return $this->trackingEvents->last() ?: null;
     }
 }

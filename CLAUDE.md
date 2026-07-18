@@ -59,8 +59,21 @@ php bin/phpunit                                   # tests
 2. ✅ Tailwind + tokens · EasyAdmin · Security · entités catalogue + CRUD + seed démo.
 3. ✅ Front SSR : accueil, collections, catégorie `/c/{slug}`, fiche produit `/p/{slug}` (+ SEO + JSON-LD).
 4. ✅ Panier (session) → tunnel `/commande` → Stripe test → webhook → `Order` + e-mail confirmation.
-5. ⏳ Workflow commande (`en_transit ⟲`, jamais `livree`) + Scheduler + bon de convoyage + suivi.
+5. ✅ Workflow (`en_transit ⟲`, jamais `livree`) + Scheduler tracking + bon de convoyage + page `/suivi`.
 6→9. Avis · Journal (CMS SEO) · compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+
+## Suivi de commande (le colis qui n'arrive jamais)
+
+- Entité `TrackingEvent` (jalons du bon de convoyage), liée à `Order`. Libellés dans `TrackingNarrative`.
+- `TrackingAdvancer` fait avancer une commande payée d'un cran : `payee → en_preparation → expediee → en_transit`,
+  puis, en transit, ajoute **à l'infini** un statut de dérive existentielle. **Jamais `livree`.**
+- Commande à planifier (cron / Scheduler), typiquement 1×/jour :
+  ```bash
+  php bin/console app:orders:advance-tracking
+  ```
+- E-mail d'expédition envoyé par un **listener workflow** sur `workflow.order.entered.expediee`.
+- Page **`/suivi`** : recherche par **référence + e-mail** (anti-énumération), bon de convoyage + timeline.
+- Commande démo en base dev : `MB-DEMO01` / `client@exemple.fr`.
 
 ## Paiement (Stripe) — MODE TEST UNIQUEMENT
 

@@ -25,7 +25,7 @@
         <div style="font-size:14px;color:#141416;margin-bottom:8px">État : <span style="color:#7E8C82">{{ order.etat|replace({'_': ' '}) }}</span></div>
         <div style="font-size:12px;color:#6E6F6A">Date de livraison estimée : à déterminer.</div>
       </div>
-      <div style="margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6E6F6A">Le suivi détaillé arrive prochainement.</div>
+      <a href="{{ path('app_suivi', { reference: order.reference }) }}" style="display:inline-block;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid #141416;color:#141416;padding-bottom:3px">Suivre ma commande →</a>
     </div>
     <div style="padding:64px 56px">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#6E6F6A;margin-bottom:22px">Détail</div>

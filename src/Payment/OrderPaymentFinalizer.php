@@ -4,7 +4,9 @@ namespace App\Payment;
 
 use App\Entity\Order;
 use App\Entity\StatutPaiement;
+use App\Entity\TrackingEvent;
 use App\Mail\OrderMailer;
+use App\Tracking\TrackingNarrative;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
@@ -38,6 +40,9 @@ class OrderPaymentFinalizer
         if ($this->orderStateMachine->can($order, 'payer')) {
             $this->orderStateMachine->apply($order, 'payer');
         }
+
+        // Premier jalon du bon de convoyage — le seul aboutissement garanti de la transaction.
+        $order->addTrackingEvent(new TrackingEvent($order, TrackingNarrative::CONFIRMATION));
 
         $this->em->flush();
 

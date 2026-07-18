@@ -31,4 +31,21 @@ class OrderMailer
 
         $this->mailer->send($email);
     }
+
+    public function sendShipmentNotice(Order $order): void
+    {
+        $to = $order->getEmail();
+        if ($to === null) {
+            return;
+        }
+
+        $email = (new TemplatedEmail())
+            ->from(Address::create($this->fromAddress))
+            ->to($to)
+            ->subject(sprintf('Votre colis %s a quitté notre entrepôt', $order->getReference()))
+            ->htmlTemplate('email/order_shipped.html.twig')
+            ->context(['order' => $order]);
+
+        $this->mailer->send($email);
+    }
 }
