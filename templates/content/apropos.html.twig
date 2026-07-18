@@ -1,0 +1,36 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Le manifeste de la Maison Brute : nous ne vendons pas des objets, nous vendons le désir de les attendre.' %}
+{% set canonical = url('app_apropos') %}
+
+{% block title %}Le Manifeste — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <section style="padding:96px 56px 80px;border-bottom:1px solid rgba(20,20,22,.16);text-align:center">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#6E6F6A;margin-bottom:26px">Le Manifeste</div>
+    <h1 style="margin:0 auto;max-width:1000px;font-family:'Archivo',sans-serif;font-weight:800;font-size:76px;line-height:.98;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Nous ne vendons pas des objets. Nous vendons le désir de les attendre.</h1>
+  </section>
+
+  <section style="max-width:760px;margin:0 auto;padding:80px 56px;font-size:19px;line-height:1.75;color:#2C2D2E">
+    <p style="margin:0 0 28px;text-wrap:pretty">Maison Brute est née d'une conviction simple : le luxe véritable n'est pas dans la possession, mais dans l'attente. Là où d'autres maisons s'épuisent à livrer toujours plus vite, nous avons choisi la voie inverse — celle de la lenteur assumée, du renoncement élégant, de la commande éternelle.</p>
+    <p style="margin:0 0 28px;text-wrap:pretty">Chacun de nos objets est conçu avec une rigueur absolue, produit en quantité dérisoire, et confié à un système d'acheminement dont nul, à ce jour, n'a atteint le terme. Ce n'est pas une défaillance. C'est notre proposition de valeur.</p>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:32px;line-height:1.35;color:#141416;text-align:center;margin:52px 0;padding:40px 0;border-top:1px solid rgba(20,20,22,.16);border-bottom:1px solid rgba(20,20,22,.16)">« La planète est finie. Nos catalogues, non. C'est là toute la tension de notre époque. »</div>
+    <p style="margin:0 0 28px;text-wrap:pretty">Nous croyons qu'un objet livré cesse d'être désiré. Nous préférons vous offrir un désir intact, entretenu jour après jour par un bon de convoyage qui ne conclura jamais. C'est notre manière, à nous, de respecter à la fois votre imaginaire et les limites du monde.</p>
+    <p style="margin:0;color:#6E6F6A;font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:1.7;text-wrap:pretty">Maison Brute. Objets d'exception. Délais d'exception. Fondée cette année, pour l'éternité.</p>
+  </section>
+
+  <section style="border-top:1px solid rgba(20,20,22,.16);display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#E1E5E0">
+    <div style="padding:56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:44px;letter-spacing:-.03em;color:#141416;margin-bottom:12px">{{ colis_livres }}</div>
+      <div style="font-size:15px;line-height:1.55;color:#3B3C3D">colis livré depuis notre fondation</div>
+    </div>
+    <div style="padding:56px;border-right:1px solid rgba(20,20,22,.16)">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:44px;letter-spacing:-.03em;color:#141416;margin-bottom:12px">{{ attente_moyenne }}<span style="font-size:22px">+</span></div>
+      <div style="font-size:15px;line-height:1.55;color:#3B3C3D">jours d'attente moyenne, et croissante</div>
+    </div>
+    <div style="padding:56px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:44px;letter-spacing:-.03em;color:#7E8C82;margin-bottom:12px">{{ recommandent }} %</div>
+      <div style="font-size:15px;line-height:1.55;color:#3B3C3D">de clients qui recommandent malgré tout</div>
+    </div>
+  </section>
+{% endblock %}

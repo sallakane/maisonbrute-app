@@ -1,0 +1,60 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Conditions générales de vente de la Maison Brute — honnêteté brutale dans les petits caractères. Boutique satirique et fictive.' %}
+{% set canonical = url('app_cgv') %}
+
+{% block title %}Conditions générales de vente — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <section style="padding:64px 56px 40px;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:18px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Mentions légales</div>
+    <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Conditions générales de vente</h1>
+    <p style="margin:16px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6E6F6A">Boutique satirique et fictive · Honnêteté brutale dans les petits caractères</p>
+  </section>
+
+  <section style="display:grid;grid-template-columns:220px 1fr;gap:56px;padding:56px;align-items:start">
+    <aside style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;position:sticky;top:24px;display:flex;flex-direction:column;gap:12px">
+      <a href="#art1" style="color:#141416">01 · Objet</a>
+      <a href="#art2" style="color:#141416">02 · Commande</a>
+      <a href="#art3" style="color:#141416">03 · Prix &amp; paiement</a>
+      <a href="#art4" style="color:#141416">04 · Livraison</a>
+      <a href="#art5" style="color:#141416">05 · Rétractation</a>
+      <a href="#art6" style="color:#141416">06 · Cookies</a>
+      <a href="#art7" style="color:#141416">07 · Données</a>
+    </aside>
+
+    <div style="max-width:720px;font-size:15px;line-height:1.75;color:#2C2D2E">
+      <div style="padding:22px 24px;margin-bottom:36px;border:1px solid #141416;background:#E1E5E0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6">⚖️ <strong>Avertissement.</strong> Maison Brute est une boutique <strong>satirique et fictive</strong>. Les paiements sont opérés en <strong>mode test</strong> : aucune somme n'est réellement encaissée, aucun bien n'est réellement expédié. Toute ressemblance avec un commerce véritable est intentionnelle, mais dénuée de conséquence.</div>
+
+      <div id="art1" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 01 — Objet</h2>
+        <p style="margin:0">Les présentes conditions régissent la vente d'objets d'exception par Maison Brute. Le client reconnaît acquérir un objet dont la livraison n'est ni datée, ni garantie, ni, à ce jour, avérée.</p>
+      </div>
+      <div id="art2" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 02 — Commande</h2>
+        <p style="margin:0">Toute commande est ferme et définitive dès le paiement. Elle vaut engagement du client à patienter, et engagement de la Maison à entretenir cette patience par des mises à jour régulières et dénuées de conclusion.</p>
+      </div>
+      <div id="art3" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 03 — Prix &amp; paiement</h2>
+        <p style="margin:0">Les prix sont indiqués en euros, toutes taxes comprises. Le paiement, opéré via Stripe <strong>en mode test</strong>, ne donne lieu à aucun débit réel. Il constitue néanmoins la seule étape de la relation dont l'aboutissement soit garanti.</p>
+      </div>
+      <div id="art4" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#7E8C82">Article 04 — Livraison</h2>
+        <p style="margin:0 0 12px">La livraison est gratuite. Elle est également indéterminée. Le délai d'acheminement est soumis aux limites physiques de la planète, à la disponibilité des transporteurs, et à des considérations que la Maison se réserve le droit de ne jamais préciser.</p>
+        <p style="margin:0;color:#6E6F6A;font-family:'IBM Plex Mono',monospace;font-size:13px">Aucun colis n'a, à ce jour, été livré. Cette statistique est communiquée en toute transparence.</p>
+      </div>
+      <div id="art5" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 05 — Droit de rétractation</h2>
+        <p style="margin:0">Le client dispose d'un délai de quatorze jours pour se rétracter. Ce délai court à compter de la réception du bien — événement qui, n'étant jamais survenu, rend le délai théoriquement infini. Nous vous invitons à en profiter sans hâte.</p>
+      </div>
+      <div id="art6" style="scroll-margin:24px;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(20,20,22,.14)">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 06 — Cookies</h2>
+        <p style="margin:0">Nous respectons scrupuleusement votre vie privée, comme nous respectons la planète. Nos cookies sont sobres, essentiels, et disparaîtront bien avant votre colis. Détail en page <a href="{{ path('app_confidentialite') }}">Confidentialité</a>.</p>
+      </div>
+      <div id="art7" style="scroll-margin:24px">
+        <h2 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Article 07 — Données personnelles</h2>
+        <p style="margin:0">Vos coordonnées de livraison sont conservées précieusement, et ne seront jamais utilisées, faute d'occasion. Vous disposez d'un droit d'accès, de rectification et d'effacement, que nous traiterons avec la même diligence que nos expéditions.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

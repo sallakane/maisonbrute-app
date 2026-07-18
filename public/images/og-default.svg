@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#E8E8E3"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#141416" stroke-width="2"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="120" letter-spacing="-4" fill="#141416">MAISON BRUTE</text>
+  <text x="600" y="370" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="26" letter-spacing="8" fill="#7E8C82">OBJETS D'EXCEPTION · DÉLAIS D'EXCEPTION</text>
+  <rect x="576" y="430" width="48" height="6" fill="#7E8C82"/>
+</svg>

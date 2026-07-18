@@ -62,7 +62,19 @@ php bin/phpunit                                   # tests
 5. ✅ Workflow (`en_transit ⟲`, jamais `livree`) + Scheduler tracking + bon de convoyage + page `/suivi`.
 6. ✅ Avis : dépôt (`/avis` + fiche produit) + modération EasyAdmin + affichage + `AggregateRating` JSON-LD.
 7. ✅ Journal : CMS éditorial (`/journal`, `/journal/{slug}`) + CRUD EasyAdmin + JSON-LD BlogPosting.
-8→9. Compteur planétaire / CGV parodiques / OG / sitemap · déploiement VPS Hostinger.
+8. ✅ Pages contenu (`/a-propos`, `/cgv`, `/confidentialite`) + sitemap.xml + robots.txt + OG défaut + 404 + compteur ancré + bandeau cookies.
+9. ⏳ Déploiement VPS Hostinger.
+
+## SEO technique & pages contenu (étape 8)
+
+- Pages : **`/a-propos`** (manifeste + stats **réelles** : 0 colis livré, attente moyenne des commandes payées, % avis ≥4★),
+  **`/cgv`** (parodique + avertissement fictif), **`/confidentialite`** (RGPD, cookies essentiels).
+- **`/sitemap.xml`** (dynamique : accueil, collections, catégories, produits publiés, journal, contenu) et **`/robots.txt`** (`SeoController`).
+- **404 personnalisée** : `templates/bundles/TwigBundle/Exception/error404.html.twig` (prévisualisable en dev via `/_error/404`).
+- **Open Graph** : `og:image` par défaut (`public/images/og-default.svg`), surchargé par produit via la variable Twig `og_image`.
+- **Compteur planétaire** ancré sur le réel : `planet_counter_start()` (`SiteExtension`) = base absurde + commandes payées × 111.
+- **Bandeau cookies** dismissible (Stimulus `cookie_banner`, cookies essentiels uniquement — pas de consentement à quémander).
+- Liens nav/footer désormais tous branchés (Compte→login, CGV, Confidentialité, À propos, Contact, Journal, Suivi, Avis).
 
 ## Journal (JournalArticle)
 

@@ -1,0 +1,31 @@
+{% extends 'storefront/layout.html.twig' %}
+
+{% set seo_description = 'Politique de confidentialité et cookies de la Maison Brute. Vos données sont conservées avec soin, et ne servent jamais.' %}
+{% set canonical = url('app_confidentialite') %}
+
+{% block title %}Confidentialité & cookies — Maison Brute{% endblock %}
+
+{% block storefront %}
+  <section style="padding:64px 56px 40px;border-bottom:1px solid rgba(20,20,22,.16)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#6E6F6A;margin-bottom:18px;display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;background:#7E8C82;display:inline-block"></span>Vie privée</div>
+    <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:56px;line-height:.94;letter-spacing:-.035em;text-transform:uppercase;color:#141416">Confidentialité &amp; cookies</h1>
+  </section>
+
+  <section style="max-width:720px;margin:0 auto;padding:56px;font-size:16px;line-height:1.75;color:#2C2D2E">
+    <div style="padding:22px 24px;margin-bottom:36px;border:1px solid #141416;background:#E1E5E0;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6">Boutique satirique et fictive. Cette politique décrit un traitement réel de données minimales, avec le sérieux qui sied même à une farce.</div>
+
+    <h2 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Données que nous collectons</h2>
+    <p style="margin:0 0 28px">À la commande : votre e-mail et une adresse de livraison. À la création de compte : votre e-mail et un mot de passe (haché). C'est tout. Nous ne collectons rien dont nous n'aurions pas, un jour, théoriquement besoin.</p>
+
+    <h2 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Usage</h2>
+    <p style="margin:0 0 28px">Ces données servent à gérer votre commande et à vous adresser un bon de convoyage qui ne conclura jamais. Elles ne sont ni vendues, ni cédées, ni, en pratique, jamais utilisées pour expédier quoi que ce soit.</p>
+
+    <h2 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Cookies</h2>
+    <p style="margin:0 0 28px">Nous n'utilisons que des cookies <strong>essentiels</strong> : celui de votre session (panier, connexion) et le jeton anti-CSRF de nos formulaires. Aucun cookie publicitaire, aucun traceur tiers. Rien à accepter, rien à refuser — seulement l'indispensable.</p>
+
+    <h2 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#141416">Vos droits</h2>
+    <p style="margin:0 0 28px">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données. Écrivez-nous ; nous traiterons votre demande avec la même diligence que nos expéditions — c'est-à-dire, en principe, un jour.</p>
+
+    <p style="margin:0;color:#6E6F6A;font-family:'IBM Plex Mono',monospace;font-size:13px">Voir aussi nos <a href="{{ path('app_cgv') }}">conditions générales de vente</a>.</p>
+  </section>
+{% endblock %}

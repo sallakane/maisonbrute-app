@@ -5,11 +5,12 @@
 {% set seo_description = produit.seoDescription ?? produit.descriptionMarketing|striptags|slice(0, 160) %}
 {% set canonical = url('app_product', { slug: produit.slug }) %}
 
+{% set og_image = image ? absolute_url(image.chemin) : null %}
+
 {% block title %}{{ produit.seoTitle ?? (produit.nom ~ ' — Maison Brute') }}{% endblock %}
 {% block og_type %}product{% endblock %}
 
 {% block head_extra %}
-  {% if image %}<meta property="og:image" content="{{ absolute_url(image.chemin) }}">{% endif %}
   {% set ld = {
     '@context': 'https://schema.org',
     '@type': 'Product',

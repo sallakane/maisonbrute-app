@@ -5,8 +5,9 @@
       <div style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#9A9B94">Commandes que la Terre ne pourra jamais honorer</div>
     </div>
     <div style="text-align:right">
-      <div data-controller="planet-counter" data-planet-counter-start-value="4042891337"
-           style="font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:500;letter-spacing:-.01em;color:#E8E8E3;line-height:1">4 042 891 337</div>
+      {% set planet_start = planet_counter_start() %}
+      <div data-controller="planet-counter" data-planet-counter-start-value="{{ planet_start }}"
+           style="font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:500;letter-spacing:-.01em;color:#E8E8E3;line-height:1">{{ planet_start|number_format(0, ',', ' ') }}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#6E6F6A;margin-top:8px">Ressources restantes : 0,0000317 % — recalcul en cours</div>
     </div>
   </div>
@@ -17,11 +18,11 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
       <div style="color:#6E6F6A;margin-bottom:6px">La Maison</div>
-      <a href="#">À propos</a><a href="#">Manifeste</a><a href="{{ path('app_journal') }}">Le Journal</a><a href="{{ path('app_collections') }}">Boutiques</a>
+      <a href="{{ path('app_apropos') }}">À propos</a><a href="{{ path('app_apropos') }}">Manifeste</a><a href="{{ path('app_journal') }}">Le Journal</a><a href="{{ path('app_collections') }}">Boutiques</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
       <div style="color:#6E6F6A;margin-bottom:6px">Service</div>
-      <a href="{{ path('app_suivi') }}">Suivre ma commande</a><a href="{{ path('app_avis') }}">Avis clients</a><a href="#">Contact</a><a href="#">CGV</a>
+      <a href="{{ path('app_suivi') }}">Suivre ma commande</a><a href="{{ path('app_avis') }}">Avis clients</a><a href="{{ path('app_apropos') }}">Contact</a><a href="{{ path('app_cgv') }}">CGV</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase">
       <div style="color:#6E6F6A;margin-bottom:6px">Collections</div>
@@ -30,6 +31,6 @@
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#6E6F6A">
     <span>© MMXXV Maison Brute — Tous droits réservés, aucun colis livré. Boutique satirique et fictive : aucune commande n'est réellement honorée.</span>
-    <span><a href="#">Mentions légales</a> · <a href="#">Cookies</a> · <a href="#">Confidentialité</a></span>
+    <span><a href="{{ path('app_cgv') }}">Mentions légales</a> · <a href="{{ path('app_confidentialite') }}">Cookies</a> · <a href="{{ path('app_confidentialite') }}">Confidentialité</a></span>
   </div>
 </footer>
