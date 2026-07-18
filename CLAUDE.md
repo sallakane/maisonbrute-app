@@ -63,7 +63,19 @@ php bin/phpunit                                   # tests
 6. ✅ Avis : dépôt (`/avis` + fiche produit) + modération EasyAdmin + affichage + `AggregateRating` JSON-LD.
 7. ✅ Journal : CMS éditorial (`/journal`, `/journal/{slug}`) + CRUD EasyAdmin + JSON-LD BlogPosting.
 8. ✅ Pages contenu (`/a-propos`, `/cgv`, `/confidentialite`) + sitemap.xml + robots.txt + OG défaut + 404 + compteur ancré + bandeau cookies.
-9. ⏳ Déploiement VPS Hostinger.
+9. ✅ Socle de déploiement prod (FrankenPHP + infra VPS) prêt — reste l'exécution sur le VPS (voir `DEPLOIEMENT.md`).
+
+## Déploiement (prod)
+
+- Pile prod **auto-suffisante** : `docker compose -f compose.prod.yaml up` = **FrankenPHP** (app) + **PostgreSQL** + **worker** Messenger.
+  Le dev courant reste `symfony server` + `compose.yaml` (Postgres/Mailpit) — non touché.
+- Derrière le **Caddy mutualisé du VPS** (TLS auto). Bloc site = `infra/Caddyfile.snippet` → `maisonbrute.fr` reverse-proxy `localhost:8084`.
+- Migrations + `messenger:setup-transports` joués **au boot de l'app** (entrypoint, `RUN_MIGRATIONS=1`). `SYMFONY_TRUSTED_PROXIES=private_ranges` (URLs https correctes derrière Caddy).
+- Secrets via `.env.local` (cf. `.env.local.example`) injectés par **systemd `EnvironmentFile`** (`infra/maisonbrute-app.service`) — **ne jamais `docker compose up` à la main**.
+- Route **`/health`** (app + DB). Cron `app:orders:advance-tracking` (`infra/*.cron`) + sauvegarde BDD (`infra/maisonbrute-backup.sh`).
+- **Procédure complète + bloquants avant lancement (MAILER_DSN, DEFAULT_URI, webhook Stripe…) : `DEPLOIEMENT.md`.**
+- ⚠️ Remplace l'ancien `~/Projects/maisonbrute` sur `maisonbrute.fr:8084` — n'en déployer qu'un seul.
+- Validé hors VPS : image build OK, pile montée en local (migrations, `/health` 200, worker consume propre).
 
 ## SEO technique & pages contenu (étape 8)
 
